@@ -1,4 +1,5 @@
 <?php
+
 use Carbon\Carbon;
 
 if (Session::has('flash_error'))
@@ -95,15 +96,15 @@ if($activeTimers->count() > 0)
 						</td>
 						<td style="<?=$style?>">
 							<?php
-							if($timer->bashed === "0" and strtotime($timer->timeExiting) > time())
+							if($timer->bashed === 0 and strtotime($timer->timeExiting) > time())
 							{
 								?><label class="label label-info">NO DATA</label><?php
 							}
-							else if($timer->bashed === "0" and strtotime($timer->timeExiting) < time())
+							else if($timer->bashed === 0 and strtotime($timer->timeExiting) < time())
 							{
 								?><label class="label label-danger">NO</label><?php
 							}
-							elseif($timer->bashed === "1")
+							elseif($timer->bashed === 1)
 							{
 								?><label class="label label-success">YES</label><?php
 							}
@@ -111,17 +112,17 @@ if($activeTimers->count() > 0)
 						</td>
 						<td style="<?=$style?>">
 							<?php
-							if($timer->bashed === "0")
+							if($timer->bashed === 0)
 							{
 								?><label class="label label-info">NO DATA</label><?php
 							}
 							else
 							{
-								if($timer->outcome === "1")
+								if($timer->outcome === 1)
 								{
 									?><label class="label label-success">WIN</label><?php
 								}
-								else if($timer->outcome === "2")
+								else if($timer->outcome === 2)
 								{
 									?><label class="label label-danger">LOSS</label><?php
 								}
@@ -137,13 +138,13 @@ if($activeTimers->count() > 0)
 						</td>
 						<td style="<?=$style?>">
 							<?php
-							if($minutes > -15 and $timer->outcome === "0")
+							if($minutes > -15 and $timer->outcome === 0)
 							{
 								?>
 								<a href="<?=URL::route('delete_timer', array($timer->id))?>" class="btn btn-danger btn-xs deleteButton">Delete</a>
 							<?php
 							}
-							else if($minutes <= -15 and $timer->outcome === "0")
+							else if($minutes <= -15 and $timer->outcome === 0)
 							{
 								?>
 								<a href="<?=URL::route('win_timer', array($timer->id))?>" class="btn btn-primary btn-xs">Win</a>
