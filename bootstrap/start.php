@@ -27,7 +27,7 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
-	'production' => array('timerboard.domain'),
+	'production' => array('cron.bravecollective.net'),
 ));
 
 /*
