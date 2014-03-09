@@ -27,7 +27,6 @@ $app->redirectIfTrailingSlash();
 */
 
 $env = $app->detectEnvironment(array(
-	'local' => array('your-machine-name'),
 	'production' => array('timerboard.domain'),
 ));
 

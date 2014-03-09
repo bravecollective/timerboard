@@ -70,6 +70,8 @@ return array(
 
 	'table' => 'sessions',
 
+	'expire_on_close' => false,
+
 	/*
 	|--------------------------------------------------------------------------
 	| Session Sweeping Lottery
