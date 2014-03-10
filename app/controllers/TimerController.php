@@ -21,7 +21,14 @@ class TimerController extends BaseController
 
 	public function listAllTimersView()
 	{
-		$activeTimers = Timers::where('outcome', '=', '0')->orderBy('timeExiting', 'asc')->get();
+		if(Auth::user()->permission === 1)
+		{
+			$activeTimers = Timers::where('outcome', '<=', '0')->orderBy('timeExiting', 'asc')->get();
+		}
+		else
+		{
+			$activeTimers = Timers::where('outcome', '=', '0')->where('timeExiting', '<=', date('Y-m-d H:i:s', time()))->orderBy('timeExiting', 'asc')->get();
+		}
 
 		$oldTimers = Timers::where('bashed', '!=', '0')->where('outcome', '!=', '0')->orderBy('timeExiting', 'desc')->paginate(30);
 		$oldTimers->setBaseUrl('expired');
@@ -41,7 +48,14 @@ class TimerController extends BaseController
 
 	public function listActiveTimersView()
 	{
-		$activeTimers = Timers::where('outcome', '=', '0')->orderBy('timeExiting', 'asc')->get();
+		if(Auth::user()->permission === 1)
+		{
+			$activeTimers = Timers::where('outcome', '<=', '0')->orderBy('timeExiting', 'asc')->get();
+		}
+		else
+		{
+			$activeTimers = Timers::where('outcome', '=', '0')->where('timeExiting', '<=', date('Y-m-d H:i:s', time()))->orderBy('timeExiting', 'asc')->get();
+		}
 
 		$this->layout = self::LAYOUT;
 		$view = View::make(self::LAYOUT)
