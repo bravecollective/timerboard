@@ -1,9 +1,8 @@
 #!/bin/sh
 
-git pull; service php-fpm restart
+git pull
 php composer.phar upgrade
 php composer.phar dumpautoload
 php artisan optimize
-#php artisan migrate:reset
 php artisan migrate
-#php artisan db:seed
+service php-fpm restart

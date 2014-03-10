@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class Timers
+ *
+ * Timer data model for recording individual timers for EVE online
+ */
 class Timers extends Eloquent{
 
 	/**
@@ -17,14 +22,14 @@ class Timers extends Eloquent{
 	protected $hidden = array();
 
 	/**
-	 * The attributes excluded from the model's JSON form.
+	 * Hardcoded GroupID that relates to the EVE Static Data Dump
 	 *
-	 * @var array
+	 * @var int
 	 */
 	public static $POCOGroupID = 7;
 
 	/**
-	 * The attributes excluded from the model's JSON form.
+	 * The attributes that can be edited in models.
 	 *
 	 * @var array
 	 */
@@ -40,7 +45,7 @@ class Timers extends Eloquent{
 	);
 
 	/**
-	 * The attributes excluded from the model's JSON form.
+	 * Hardcoded Structure IDs that map IDs to names
 	 *
 	 * @var array
 	 */
@@ -53,7 +58,7 @@ class Timers extends Eloquent{
 	);
 
 	/**
-	 * The attributes excluded from the model's JSON form.
+	 * Hardcoded Structure Statuses that map Statuses to names
 	 *
 	 * @var array
 	 */
@@ -64,7 +69,7 @@ class Timers extends Eloquent{
 	);
 
 	/**
-	 * The attributes excluded from the model's JSON form.
+	 * Hardcoded Timer Types that map Types to Names
 	 *
 	 * @var array
 	 */

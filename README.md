@@ -1,6 +1,6 @@
 # BraveCollective TimerBoard
 
-This timerboard is designed to integrate directly with the eve static data dump.
+This timerboard is designed to integrate directly with the eve static data dump and provide a robust timer tracking dashboard.
 
 ## Installation
 
@@ -23,13 +23,12 @@ This timerboard is designed to integrate directly with the eve static data dump.
 * Configure the app/config/database.php file with your database connection details.
 * Edit app/database/seeds/UserTableSeeder.php and setup your default username, email address and password
 * Edit app/config/app.php and put your domain name in the url property
-* Edit bootstrap/start.php and put your domain name in the "production" environment detector
 * Run "chmod 0755 setup update" and then "./setup" from the folder the repo was checked out in.
 * Make sure you see no errors, go to the domain name in a browser and try to login!
 
 ### Upgrading
 
-* Run "./update" from the repo root to pull the latest version, all the latest packages, and migrate the DB.
+* Run "./update" from the repo root to pull the latest version, all the latest packages, and migrate the DB (THis d.
 
 ### Contributing To TimerBoard
 
