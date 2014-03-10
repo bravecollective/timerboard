@@ -28,7 +28,14 @@ if($activeTimers->count() > 0)
 <div class="row">
 	<div class="col-lg-12">
 		<h3>
-			<a href="<?=URL::to('add')?>" class="btn btn-success pull-right btn-sm">New</a>
+			<?php
+			if(Auth::user()->permission === 1)
+			{
+				?>
+				<a href="<?=URL::to('add')?>" class="btn btn-success pull-right btn-sm">New</a>
+				<?php
+			}
+			?>
 			Active Timers <label class="label label-default now"><?=date('Y-m-d H:i:s e', time())?></label>
 		</h3>
 		<div>
