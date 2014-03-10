@@ -48,6 +48,7 @@ class TimerController extends BaseController
 			->with('page_content', $pageContentView)
 			->nest('navigation', 'navigation')
 			->nest('footer', 'parts/footer');
+
 		return $layoutView;
 	}
 
@@ -66,32 +67,35 @@ class TimerController extends BaseController
 				get();
 		}
 
-		$this->layout = self::LAYOUT;
-		$view = View::make(self::LAYOUT)
-		            ->nest('navigation', 'navigation')
-		            ->nest('footer', 'parts/footer')
-		            ->nest('page_content', 'active',
-		                   array(
-			                   'activeTimers' => $activeTimers
-		                   )
-			);
-		return $view;
+		// make timers page
+		$pageContentView = View::make('active')
+		                       ->with(array('activeTimers' => $activeTimers))
+		                       ->nest('timer_table', 'parts/timer_table', array('timers' => $activeTimers, 'paginate' => false));
+
+		// make main layout page
+		$layoutView = View::make(self::LAYOUT)
+		                  ->with('page_content', $pageContentView)
+		                  ->nest('navigation', 'navigation')
+		                  ->nest('footer', 'parts/footer');
+
+		return $layoutView;
 	}
 
 	public function listExpiredTimersView()
 	{
 		$oldTimers = Timers::where('bashed', '!=', '0')->where('outcome', '!=', '0')->orderBy('timeExiting', 'desc')->paginate(30);
 
-		$this->layout = self::LAYOUT;
-		$view = View::make(self::LAYOUT)
-		            ->nest('navigation', 'navigation')
-		            ->nest('footer', 'parts/footer')
-		            ->nest('page_content', 'expired',
-		                   array(
-			                   'oldTimers' => $oldTimers
-		                   )
-			);
-		return $view;
+		// make timers page
+		$pageContentView = View::make('expired')
+		                       ->nest('timer_table', 'parts/timer_table', array('timers' => $oldTimers, 'paginate' => true));
+
+		// make main layout page
+		$layoutView = View::make(self::LAYOUT)
+		                  ->with('page_content', $pageContentView)
+		                  ->nest('navigation', 'navigation')
+		                  ->nest('footer', 'parts/footer');
+
+		return $layoutView;
 	}
 
 	public function addTimerView()
