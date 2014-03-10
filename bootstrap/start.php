@@ -60,6 +60,13 @@ $framework = $app['path.base'].'/vendor/laravel/framework/src';
 
 require $framework.'/Illuminate/Foundation/start.php';
 
+
+Auth::extend('braveapi', function($app)
+{
+	return new ApiUserProvider;
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application
