@@ -86,10 +86,10 @@ if($activeTimers->count() > 0)
 							<?=$name->itemName?>
 						</td>
 						<td style="<?=$style?>">
-							<?=Timers::$structureIDs[$timer->structureType]?>
+							<label class="label label-default"><?=Timers::$structureTypes[$timer->structureType]?></label>
 						</td>
 						<td style="<?=$style?>">
-							<?=Timers::$structureStatus[$timer->structureStatus]?>
+							<label class="label label-<?=($timer->structureStatu === 1 ? 'primary' : 'danger')?>"><?=Timers::$structureStatus[$timer->structureStatus]?></label>
 						</td>
 						<td style="<?=$style?>" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>" class="timeago">
 							<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?>

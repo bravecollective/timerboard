@@ -53,7 +53,7 @@ if (Session::has('flash_error'))
 
 			<div class="form-group">
 				<?=Form::label('structureType', 'Structure Type')?>
-				<?=Form::select('structureType', Timers::$structureIDs, '', array('id' => 'structureType', 'class' => 'form-control'))?>
+				<?=Form::select('structureType', Timers::$structureTypes, '', array('id' => 'structureType', 'class' => 'form-control'))?>
 			</div>
 
 			<?php
