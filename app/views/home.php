@@ -137,18 +137,21 @@ if($activeTimers->count() > 0)
 						</td>
 						<td style="<?=$style?>">
 							<?php
-							if($minutes > -15 and $timer->outcome === 0)
+							if(Auth::user()->permission === 1)
 							{
-								?>
-								<a href="<?=URL::route('delete_timer', array($timer->id))?>" class="btn btn-danger btn-xs deleteButton">Delete</a>
-							<?php
-							}
-							else if($minutes <= -15 and $timer->outcome === 0)
-							{
-								?>
-								<a href="<?=URL::route('win_timer', array($timer->id))?>" class="btn btn-primary btn-xs">Win</a>
-								<a href="<?=URL::route('fail_timer', array($timer->id))?>" class="btn btn-warning btn-xs">Loss</a>
-							<?php
+								if($minutes > -15 and $timer->outcome === 0)
+								{
+									?>
+									<a href="<?=URL::route('delete_timer', array($timer->id))?>" class="btn btn-danger btn-xs deleteButton">Delete</a>
+								<?php
+								}
+								else if($minutes <= -15 and $timer->outcome === 0)
+								{
+									?>
+									<a href="<?=URL::route('win_timer', array($timer->id))?>" class="btn btn-primary btn-xs">Win</a>
+									<a href="<?=URL::route('fail_timer', array($timer->id))?>" class="btn btn-warning btn-xs">Loss</a>
+								<?php
+								}
 							}
 							?>
 						</td>
@@ -263,18 +266,21 @@ if($activeTimers->count() > 0)
 						</td>
 						<td style="<?=$style?>">
 							<?php
-							if($minutes > -15 and $timer->outcome === 0)
+							if(Auth::user()->permission === 1)
 							{
-								?>
-								<a href="<?=URL::route('delete_timer', array($timer->id))?>" class="btn btn-danger btn-xs deleteButton">Delete</a>
-							<?php
-							}
-							else if($minutes <= -15 and $timer->outcome === 0)
-							{
-								?>
-								<a href="<?=URL::route('win_timer', array($timer->id))?>" class="btn btn-primary btn-xs">Win</a>
-								<a href="<?=URL::route('fail_timer', array($timer->id))?>" class="btn btn-warning btn-xs">Loss</a>
-							<?php
+								if($minutes > -15 and $timer->outcome === 0)
+								{
+									?>
+									<a href="<?=URL::route('delete_timer', array($timer->id))?>" class="btn btn-danger btn-xs deleteButton">Delete</a>
+								<?php
+								}
+								else if($minutes <= -15 and $timer->outcome === 0)
+								{
+									?>
+									<a href="<?=URL::route('win_timer', array($timer->id))?>" class="btn btn-primary btn-xs">Win</a>
+									<a href="<?=URL::route('fail_timer', array($timer->id))?>" class="btn btn-warning btn-xs">Loss</a>
+								<?php
+								}
 							}
 							?>
 						</td>
