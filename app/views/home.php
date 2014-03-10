@@ -19,9 +19,16 @@ if (Session::has('flash_msg'))
 <?php
 if($activeTimers->count() > 0)
 {
-	?>
-	<div id="flash_error" class="alert alert-success">Next Timer: <strong class="timeago"  title="<?=Carbon::createFromTimeStamp(strtotime($activeTimers[0]->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($activeTimers[0]->timeExiting))->diffForHumans();?></strong></div>
-<?php
+	foreach($activeTimers as $timer)
+	{
+		if($timer->timeExiting > time())
+		{
+			?>
+			<div id="flash_error" class="alert alert-success">Next Timer: <strong class="timeago" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?></strong></div>
+			<?php
+			break;
+		}
+	}
 }
 ?>
 
