@@ -32,6 +32,7 @@
 			return false;
 		});
 
+		jQuery.timeago.settings.allowFuture = true;
 		jQuery("td.timeago").timeago();
 	});
 </script>
