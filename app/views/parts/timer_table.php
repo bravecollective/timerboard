@@ -115,4 +115,9 @@ use Carbon\Carbon;
 	?>
 	</tbody>
 </table>
-<?=$timers->links()?>
+<?php
+if(isset($paginate) and $paginate == true)
+{
+	echo $timers->links();
+}
+?>
