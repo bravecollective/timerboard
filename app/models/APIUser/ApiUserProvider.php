@@ -26,8 +26,19 @@ class ApiUserProvider implements UserProviderInterface {
 		{
 			$api = new Brave\API(Config::get('braveapi.application-endpoint'), Config::get('braveapi.application-identifier'), Config::get('braveapi.local-private-key'), Config::get('braveapi.remote-public-key'));
 			$result = $api->core->info(array('token' => $credentials['token']));
-			var_export($result);
-			exit;
+			if(ApiUser::find($result->character->id) == false)
+			{
+				ApiUser::create(array(
+					                'id' => $return->character->id,
+					                'token' => $token,
+					                'character_name' => $return->character->name,
+					                'alliance_id' => $return->alliance->id,
+					                'alliance_name' => $return->alliance->name,
+					                'tags' => json_encode($return->tags),
+					                'status' => 1,
+					                'permission' => $permission
+				                ));
+			}
 		}
 		catch(Exception $e)
 		{
