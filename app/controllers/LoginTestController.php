@@ -21,7 +21,7 @@ class LoginTestController extends BaseController {
 
 	public function __construct()
 	{
-		$this->api = new \Brave\API(Config::get('braveapi.application-identifier'), Config::get('braveapi.local-private-key'), Config::get('braveapi.remote-public-key'));
+		$this->api = new Brave\API(Config::get('braveapi.application-identifier'), Config::get('braveapi.local-private-key'), Config::get('braveapi.remote-public-key'));
 	}
 
 	public function loginView()
