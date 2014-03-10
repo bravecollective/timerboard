@@ -11,16 +11,16 @@
 |
 */
 
+Route::get('logintest', array('as' => 'logintest', 'uses' => 'LoginTestController@loginView'));
+Route::post('logintest', array('uses' => 'LoginTestController@loginAction'));
+
+Route::get('infotest', array('as' => 'infotest', 'uses' => 'LoginTestController@infoAction'));
+
 // GUEST REQUIRED ROUTES
 Route::group(array('before' => 'guest'), function()
 {
 	Route::get('login', array('as' => 'login', 'uses' => 'LoginController@loginView'));
 	Route::post('login', array('uses' => 'LoginController@loginAction'));
-
-	Route::get('logintest', array('as' => 'logintest', 'uses' => 'LoginTestController@loginView'));
-	Route::post('logintest', array('uses' => 'LoginTestController@loginAction'));
-
-	Route::get('infotest', array('as' => 'infotest', 'uses' => 'LoginTestController@infoAction'));
 });
 
 // LOGIN REQUIRED ROUTES
