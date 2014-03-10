@@ -47,7 +47,6 @@ if($activeTimers->count() > 0)
 					<th>Type</th>
 					<th>Timer</th>
 					<th>Date</th>
-					<th>Showed Up</th>
 					<th>Win/Loss</th>
 					<th>User</th>
 					<th>Actions</th>
@@ -103,22 +102,6 @@ if($activeTimers->count() > 0)
 						</td>
 						<td style="<?=$style?>">
 							<?=date('Y-m-d H:i:s e', strtotime($timer->timeExiting))?>
-						</td>
-						<td style="<?=$style?>">
-							<?php
-							if($timer->bashed === 0 and strtotime($timer->timeExiting) > time())
-							{
-								?><label class="label label-info">NO DATA</label><?php
-							}
-							else if($timer->bashed === 0 and strtotime($timer->timeExiting) < time())
-							{
-								?><label class="label label-danger">NO</label><?php
-							}
-							elseif($timer->bashed === 1)
-							{
-								?><label class="label label-success">YES</label><?php
-							}
-							?>
 						</td>
 						<td style="<?=$style?>">
 							<?php
@@ -190,7 +173,6 @@ if($activeTimers->count() > 0)
 					<th>Type</th>
 					<th>Timer</th>
 					<th>Date</th>
-					<th>Showed Up</th>
 					<th>Win/Loss</th>
 					<th>User</th>
 					<th>Actions</th>
@@ -236,22 +218,6 @@ if($activeTimers->count() > 0)
 						</td>
 						<td style="<?=$style?>">
 							<?=date('Y-m-d H:i:s e', strtotime($timer->timeExiting))?>
-						</td>
-						<td style="<?=$style?>">
-							<?php
-							if($timer->bashed === 0 and strtotime($timer->timeExiting) > time())
-							{
-								?><label class="label label-info">NO DATA</label><?php
-							}
-							else if($timer->bashed === 0 and strtotime($timer->timeExiting) < time())
-							{
-								?><label class="label label-danger">NO</label><?php
-							}
-							elseif($timer->bashed === 1)
-							{
-								?><label class="label label-success">YES</label><?php
-							}
-							?>
 						</td>
 						<td style="<?=$style?>">
 							<?php

@@ -41,7 +41,6 @@ if($activeTimers->count() > 0)
 					<th>Type</th>
 					<th>Timer</th>
 					<th>Date</th>
-					<th>Showed Up</th>
 					<th>Win/Loss</th>
 					<th>User</th>
 					<th>Actions</th>
@@ -111,29 +110,6 @@ if($activeTimers->count() > 0)
 							elseif($timer->bashed === 1)
 							{
 								?><label class="label label-success">YES</label><?php
-							}
-							?>
-						</td>
-						<td style="<?=$style?>">
-							<?php
-							if($timer->bashed === 0)
-							{
-								?><label class="label label-info">NO DATA</label><?php
-							}
-							else
-							{
-								if($timer->outcome === 1)
-								{
-									?><label class="label label-success">WIN</label><?php
-								}
-								else if($timer->outcome === 2)
-								{
-									?><label class="label label-danger">LOSS</label><?php
-								}
-								else
-								{
-									?><label class="label label-info">Outcome Needed</label><?php
-								}
 							}
 							?>
 						</td>
