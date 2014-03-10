@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Auth\GenericUser;
+use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\UserProviderInterface;
 
 class ApiUserProvider implements UserProviderInterface {
