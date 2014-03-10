@@ -56,6 +56,15 @@ if (Session::has('flash_error'))
 				<?=Form::select('structureType', Timers::$structureIDs, '', array('id' => 'structureType', 'class' => 'form-control'))?>
 			</div>
 
+			<?php
+			$timer_status = Timers::$structureStatus;
+			unset($timer_status[0]);
+			?>
+			<div class="form-group">
+				<?=Form::label('structureStatus', 'Structure Status')?>
+				<?=Form::select('structureStatus', $timer_status, '', array('id' => 'structureStatus', 'class' => 'form-control'))?>
+			</div>
+
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary">Add Timer</button>
 			</div>

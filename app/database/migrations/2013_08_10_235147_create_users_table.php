@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration {
 			$t->increments('id')->unsigned();
 			$t->bigInteger('itemID')->unsigned();
 			$t->integer('structureType');
+			$t->integer('structureStatus');
 			$t->integer('bashed');
 			$t->integer('outcome');
 			$t->integer('timerType');

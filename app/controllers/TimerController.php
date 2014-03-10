@@ -123,6 +123,7 @@ class TimerController extends BaseController
 			Timers::create(array(
                 'itemID' => Input::get('itemID'),
                 'structureType' => (int)Input::get('structureType'),
+                'structureStatus' => (int)Input::get('structureStatus'),
                 'timeExiting' => date('Y-m-d H:i:s', $time->timestamp),
                 'bashed' => '0',
                 'timerType' => Input::get('timerType'),

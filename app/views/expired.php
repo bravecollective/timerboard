@@ -27,6 +27,7 @@ if (Session::has('flash_msg'))
 				<tr>
 					<th>Name</th>
 					<th>Structure</th>
+					<th>Type</th>
 					<th>Timer</th>
 					<th>Date</th>
 					<th>Showed Up</th>
@@ -66,6 +67,9 @@ if (Session::has('flash_msg'))
 						</td>
 						<td style="<?=$style?>">
 							<?=Timers::$structureIDs[$timer->structureType]?>
+						</td>
+						<td style="<?=$style?>">
+							<?=Timers::$structureStatus[$timer->structureStatus]?>
 						</td>
 						<td style="<?=$style?>">
 							<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?>
@@ -123,14 +127,14 @@ if (Session::has('flash_msg'))
 								{
 									?>
 									<a href="<?=URL::route('delete_timer', array($timer->id))?>" class="btn btn-danger btn-xs deleteButton">Delete</a>
-								<?php
+									<?php
 								}
 								else if($minutes <= -15 and $timer->outcome === 0)
 								{
 									?>
 									<a href="<?=URL::route('win_timer', array($timer->id))?>" class="btn btn-primary btn-xs">Win</a>
 									<a href="<?=URL::route('fail_timer', array($timer->id))?>" class="btn btn-warning btn-xs">Loss</a>
-								<?php
+									<?php
 								}
 							}
 							?>

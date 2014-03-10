@@ -10,6 +10,7 @@ class TimersTableSeeder extends Seeder {
 			'bashed' => 0,
 			'outcome' => 0,
 			'structureType' => 0,
+			'structureStatus' => 0,
 			'timerType' => 0,
 			'timeExiting' => date('Y-m-d H:i:s', 1387366200),
 			'user_id' => '1',

@@ -31,6 +31,7 @@ class Timers extends Eloquent{
 	protected $fillable = array(
 		'itemID',
 		'structureType',
+		'structureStatus',
 		'bashed',
 		'outcome',
 		'timerType',
@@ -49,6 +50,17 @@ class Timers extends Eloquent{
 		'3' => 'Station',
 		'4' => 'I-Hub',
 		'5' => 'TCU'
+	);
+
+	/**
+	 * The attributes excluded from the model's JSON form.
+	 *
+	 * @var array
+	 */
+	public static $structureStatus = array(
+		'0' => '',
+		'1' => 'Shield',
+		'2' => 'Armor',
 	);
 
 	/**
