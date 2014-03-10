@@ -5,6 +5,7 @@ class LoginTestController extends BaseController {
 	const LAYOUT = 'layouts.login';
 
 	private $api = null;
+	private $edit_tags = array('admin', 'cron.admin', 'diplo', 'diplo.guest', 'fc', 'fc.guest');
 
 	/*
 	|--------------------------------------------------------------------------
@@ -56,11 +57,39 @@ class LoginTestController extends BaseController {
 			               ->with('flash_notice', 'Login Failed');
 		}
 
-		$data = array('token' => $token);
-		$return = $this->api->core->info($data);
+		// ----------------
+		$return = $this->api->core->info(array('token' => $token));
 
-		var_dump($return);
-		exit;
+		if(!isset($return->character->name))
+		{
+
+		}
+
+		// validate permissions
+		$permission = 0;
+		foreach($this->edit_tags as $tag)
+		{
+			if(in_array($tag, $return->tags) and $permission == 0) // check for special group
+			{
+				$permission = 1;
+			}
+		}
+
+		if(ApiUser::find($return->character->id) == false)
+		{
+			ApiUser::create(array(
+				                'id' => $return->character->id,
+				                'token' => $token,
+				                'character_name' => $return->character->name,
+				                'alliance_id' => $return->alliance->id,
+				                'alliance_name' => $return->alliance->name,
+				                'tags' => json_encode($return->tags),
+				                'status' => 1,
+				                'permission' => $permission
+			                ));
+		}
+
+		return 'It Worked!!! ('.$return->character->id.': '.$return->character->name.', '.$return->alliance->name.')';
 	}
 
 	public function logoutAction()
