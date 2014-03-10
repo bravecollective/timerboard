@@ -133,7 +133,7 @@ if($activeTimers->count() > 0)
 							?>
 						</td>
 						<td style="<?=$style?>">
-							<?=explode('@', $user->email)[0]?>
+							<?=$user->character_name?>
 						</td>
 						<td style="<?=$style?>">
 							<?php
@@ -259,7 +259,7 @@ if($activeTimers->count() > 0)
 							?>
 						</td>
 						<td style="<?=$style?>">
-							<?=explode('@', $user->email)[0]?>
+							<?=$user->character_name?>
 						</td>
 						<td style="<?=$style?>">
 							<?php

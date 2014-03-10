@@ -113,7 +113,7 @@ if (Session::has('flash_msg'))
 							?>
 						</td>
 						<td style="<?=$style?>">
-							<?=explode('@', $user->email)[0]?>
+							<?=$user->character_name?>
 						</td>
 						<td style="<?=$style?>">
 							<?php
