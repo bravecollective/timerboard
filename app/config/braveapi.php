@@ -12,8 +12,9 @@ return array(
 	|
 	*/
 
-	'local_private_key' => '',
-	'local_public_key'  => '',
-	'remote_public_key' => '',
+	'application-identifier' => '',
+	'local-private-key' => '',
+	'local-public-key'  => '', // not used locally
+	'remote-public-key' => '',
 
 );

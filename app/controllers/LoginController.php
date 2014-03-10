@@ -19,7 +19,6 @@ class LoginController extends BaseController {
 
 	public function loginView()
 	{
-
 		$this->layout = self::LAYOUT;
 		$view = View::make(self::LAYOUT)
 		        ->nest('navigation', 'navigation')
@@ -32,8 +31,7 @@ class LoginController extends BaseController {
 	public function loginAction()
 	{
 		$user = array(
-			'username' => Input::get('username'),
-			'password' => Input::get('password')
+			'token' => Input::get('token')
 		);
 
 		if (Auth::attempt($user)) {
