@@ -99,7 +99,21 @@ if($activeTimers->count() > 0)
 							<?=$name->itemName?>
 						</td>
 						<td style="<?=$style?>">
-							<label class="label label-default"><?=Timers::$structureTypes[$timer->structureType]?></label>
+							<?php
+							$label_class = 'default';
+							switch($timer->structureType)
+							{
+								case 3:
+								case 4:
+									$label_class = 'warning';
+									break;
+
+								case 5:
+									$label_class = 'danger';
+									break;
+							}
+							?>
+							<label class="label label-<?=$label_class?>"><?=Timers::$structureTypes[$timer->structureType]?></label>
 						</td>
 						<td style="<?=$style?>">
 							<label class="label label-<?=($timer->structureStatus === 1 ? 'primary' : 'danger')?>"><?=Timers::$structureStatus[$timer->structureStatus]?></label>
@@ -215,7 +229,21 @@ if($activeTimers->count() > 0)
 							<?=$name->itemName?>
 						</td>
 						<td style="<?=$style?>">
-							<label class="label label-default"><?=Timers::$structureTypes[$timer->structureType]?></label>
+							<?php
+							$label_class = 'default';
+							switch($timer->structureType)
+							{
+								case 3:
+								case 4:
+									$label_class = 'warning';
+									break;
+
+								case 5:
+									$label_class = 'danger';
+									break;
+							}
+							?>
+							<label class="label label-<?=$label_class?>"><?=Timers::$structureTypes[$timer->structureType]?></label>
 						</td>
 						<td style="<?=$style?>">
 							<label class="label label-<?=($timer->structureStatus === 1 ? 'primary' : 'danger')?>"><?=Timers::$structureStatus[$timer->structureStatus]?></label>
