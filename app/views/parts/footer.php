@@ -37,8 +37,8 @@
 
 		setInterval(function()
 		{
-			var isoDate = new Date('yourdatehere').toISOString();
+			var isoDate = new Date().toISOString();
 			$('.time-now').html(isoDate);
-		}, 1);
+		}, 1000);
 	});
 </script>
