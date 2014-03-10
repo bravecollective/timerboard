@@ -13,6 +13,20 @@ class ApiUser extends Eloquent implements UserInterface {
 	protected $table = 'api_users';
 
 	/**
+	 * The attributes excluded from the model's JSON form.
+	 *
+	 * @var array
+	 */
+	protected $hidden = array('token');
+
+	/**
+	 * The attributes excluded from the model's JSON form.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array('id', 'token', 'character_name', 'alliance_id', 'alliance_name', 'tags', 'status', 'permission');
+
+	/**
 	 * Get the unique identifier for the user.
 	 *
 	 * @return mixed
