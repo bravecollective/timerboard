@@ -38,13 +38,13 @@ class TimerController extends BaseController
 		$oldTimers->setBaseUrl('expired');
 
 		// make timers page
-		$pageContentView = View::make('page_content')
+		$pageContentView = View::make('home')
 			->nest('parts/timer_table', 'timer_table_new', array('timers' => $activeTimers))
 			->nest('parts/timer_table', 'timer_table_old', array('timers' => $oldTimers));
 
 		// make main layout page
 		$layoutView = View::make(self::LAYOUT)
-			->with('home', $pageContentView)
+			->with('page_content', $pageContentView)
 			->nest('navigation', 'navigation')
 			->nest('footer', 'parts/footer');
 		return $layoutView;
