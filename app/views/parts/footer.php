@@ -2,7 +2,7 @@
 	<div class="container">
 		<p class="text-muted credit">
 			<span class="pull-right">Help</span>
-			© BNI - 2013
+			© HERO - 2013
 		</p>
 	</div>
 </div>
