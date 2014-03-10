@@ -24,7 +24,7 @@ class ApiUserProvider implements UserProviderInterface {
 
 		try
 		{
-			$api = Brave\API(Config::get('braveapi.application-identifier'), Config::get('braveapi.local-private-key'), Config::get('braveapi.remote-public-key'));
+			$api = new Brave\API(Config::get('braveapi.application-endpoint'), Config::get('braveapi.application-identifier'), Config::get('braveapi.local-private-key'), Config::get('braveapi.remote-public-key'));
 			$result = $api->core->info(array('token' => $credentials['token']));
 			var_export($result);
 			exit;
