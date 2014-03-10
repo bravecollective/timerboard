@@ -57,7 +57,7 @@ class LoginTestController extends BaseController {
 		}
 
 		$data = array('token' => $token);
-		$return = $this->api->core->authorize($data);
+		$return = $this->api->core->info($data);
 
 		var_dump($return);
 		exit;
