@@ -69,6 +69,22 @@ class LoginController extends BaseController {
 
 	public function logoutAction()
 	{
+		//$token = Auth::user()->token;
+
+		Auth::logout();
+
+		return Redirect::route('home')
+		               ->with('flash_notice', 'You are successfully logged out.');
+	}
+
+	public function deauthAction()
+	{
+		$user = Auth::user();
+		$this->api->core->deauthorize(array('token' => $user->token));
+
+		$user->status = 0;
+		$user->save();
+
 		Auth::logout();
 
 		return Redirect::route('home')
