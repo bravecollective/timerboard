@@ -22,7 +22,6 @@ class ApiUserProvider implements UserProviderInterface {
 			return true;
 		}
 
-		//
 		try
 		{
 			$api = new Brave\API(Config::get('braveapi.application-endpoint'), Config::get('braveapi.application-identifier'), Config::get('braveapi.local-private-key'), Config::get('braveapi.remote-public-key'));
@@ -31,7 +30,8 @@ class ApiUserProvider implements UserProviderInterface {
 			//
 			if(!isset($result->character->name))
 			{
-				return Redirect::route('logintest')->with('flash_error', 'Login Failed, Please Try Again');
+				return Redirect::route('logintest')
+					->with('flash_error', 'Login Failed, Please Try Again');
 			}
 
 			// validate permissions
@@ -79,7 +79,8 @@ class ApiUserProvider implements UserProviderInterface {
 		}
 		catch(Exception $e)
 		{
-			return Redirect::route('logintest')->with('flash_error', 'Login Failed, Please Try Again');
+			return Redirect::route('logintest')
+				->with('flash_error', 'Login Failed, Please Try Again');
 		}
 	}
 }

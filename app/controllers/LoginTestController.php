@@ -76,5 +76,4 @@ class LoginTestController extends BaseController {
 		return Redirect::route('home')
 		               ->with('flash_notice', 'You are successfully logged out.');
 	}
-
 }
