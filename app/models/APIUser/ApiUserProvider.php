@@ -16,6 +16,7 @@ class ApiUserProvider implements UserProviderInterface {
 		try
 		{
 			$user = ApiUser::where('token', '=', $credentials['token'])->get();
+
 			if(isset($user[0]))
 			{
 				return $user[0];
@@ -39,7 +40,8 @@ class ApiUserProvider implements UserProviderInterface {
 		}
 		catch(Exception $e)
 		{
-			return false;
+			exit;
+			return null;
 		}
 	}
 
