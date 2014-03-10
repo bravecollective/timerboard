@@ -61,11 +61,10 @@ $framework = $app['path.base'].'/vendor/laravel/framework/src';
 require $framework.'/Illuminate/Foundation/start.php';
 
 
-Auth::extend('ApiUser', function($app)
+Auth::extend('apiuser', function($app)
 {
 	return new ApiUserProvider;
 });
-
 
 /*
 |--------------------------------------------------------------------------
