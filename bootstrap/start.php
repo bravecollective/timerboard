@@ -11,6 +11,8 @@
 |
 */
 
+define('USE_EXT', 'GMP');
+
 $app = new Illuminate\Foundation\Application;
 
 //$app->redirectIfTrailingSlash();
