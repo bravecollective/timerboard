@@ -97,7 +97,7 @@ if($activeTimers->count() > 0)
 						<td style="<?=$style?>">
 							<?=Timers::$structureStatus[$timer->structureStatus]?>
 						</td>
-						<td style="<?=$style?>">
+						<td style="<?=$style?>" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>" class="timeago">
 							<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?>
 						</td>
 						<td style="<?=$style?>">
@@ -213,7 +213,7 @@ if($activeTimers->count() > 0)
 						<td style="<?=$style?>">
 							<?=Timers::$structureStatus[$timer->structureStatus]?>
 						</td>
-						<td style="<?=$style?>">
+						<td style="<?=$style?>" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>" class="timeago">
 							<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?>
 						</td>
 						<td style="<?=$style?>">

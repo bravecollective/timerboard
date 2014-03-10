@@ -31,5 +31,7 @@
 
 			return false;
 		});
+
+		jQuery("td.timeago").timeago();
 	});
 </script>
