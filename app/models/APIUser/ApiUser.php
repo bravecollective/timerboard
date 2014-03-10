@@ -43,7 +43,7 @@ class ApiUser extends Eloquent implements UserInterface {
 	 */
 	public function getAuthPassword()
 	{
-		return $this->password;
+		return $this->token;
 	}
 
 }
