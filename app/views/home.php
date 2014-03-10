@@ -87,7 +87,7 @@ if($activeTimers->count() > 0)
 					}
 
 					?>
-					<tr class="<?=$class?>" id="item<?=$id?>" hours="<?=$hours?>">
+					<tr class="<?=$class?>" id="item<?=$timer->id?>" hours="<?=$hours?>">
 						<td style="<?=$style?>">
 							<label title="<?=$name->itemID?>" class="label <?= ($name->groupID == Timers::$POCOGroupID ? 'label-primary' : 'label-default') ?>" style="padding: .2em .7em .3em;"><?= ($name->groupID == Timers::$POCOGroupID ? 'P' : 'M') ?></label>
 							<?=$name->itemName?>
@@ -220,7 +220,7 @@ if($activeTimers->count() > 0)
 						$class = 'danger';
 					}
 					?>
-					<tr class="<?=$class?>" style="<?=$style?>" id="item<?=$id?>" hours="<?=$hours?>">
+					<tr class="<?=$class?>" style="<?=$style?>" id="item<?=$timer->id?>" hours="<?=$hours?>">
 						<td style="<?=$style?>">
 							<label title="<?=$name->itemID?>" class="label <?= ($name->groupID == Timers::$POCOGroupID ? 'label-primary' : 'label-default') ?>" style="padding: .2em .7em .3em;"><?= ($name->groupID == Timers::$POCOGroupID ? 'P' : 'M') ?></label>
 							<?=$name->itemName?>
