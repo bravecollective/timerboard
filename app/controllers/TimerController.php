@@ -39,8 +39,8 @@ class TimerController extends BaseController
 
 		// make timers page
 		$pageContentView = View::make('home')
-			->nest('parts/timer_table', 'timer_table_new', array('timers' => $activeTimers))
-			->nest('parts/timer_table', 'timer_table_old', array('timers' => $oldTimers));
+			->nest('timer_table_new', 'parts/timer_table', array('timers' => $activeTimers))
+			->nest('timer_table_old', 'parts/timer_table', array('timers' => $oldTimers));
 
 		// make main layout page
 		$layoutView = View::make(self::LAYOUT)
