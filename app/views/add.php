@@ -76,7 +76,7 @@ if (Session::has('flash_error'))
 <script type="text/javascript">
 	$(document).ready(function()
 	{
-		$('#timeExiting').datetimepicker();
+		//$('#timeExiting').datetimepicker();
 
 		$("#itemID").select2({
 			placeholder: "Search for Celestials",
