@@ -12,9 +12,10 @@ return array(
 	|
 	*/
 
-	'application-identifier' => '',
-	'local-private-key' => '',
-	'local-public-key'  => '', // not used locally
-	'remote-public-key' => '',
+	'application-endpoint' => '', // must be HTTPS
+	'application-identifier' => '', // from core auth
+	'local-private-key' => '', // from local key generation
+	'local-public-key'  => '', // from local key generation, not used
+	'remote-public-key' => '', // form core auth
 
 );
