@@ -17,7 +17,7 @@ Route::group(array('before' => 'guest'), function()
 	Route::get('login', array('as' => 'login', 'uses' => 'LoginController@loginView'));
 	Route::post('login', array('uses' => 'LoginController@loginAction'));
 
-	Route::get('info', array('as' => 'infotest', 'uses' => 'LoginController@infoAction'));
+	Route::get('info', array('as' => 'info', 'uses' => 'LoginController@infoAction'));
 });
 
 // LOGIN REQUIRED ROUTES
