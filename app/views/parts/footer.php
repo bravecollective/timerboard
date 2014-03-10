@@ -34,5 +34,11 @@
 
 		jQuery.timeago.settings.allowFuture = true;
 		jQuery("td.timeago").timeago();
+
+		setInterval(function()
+		{
+			var isoDate = new Date('yourdatehere').toISOString();
+			$('.time-now').html(isoDate);
+		}, 1);
 	});
 </script>

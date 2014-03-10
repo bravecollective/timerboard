@@ -36,7 +36,7 @@ if($activeTimers->count() > 0)
 				<?php
 			}
 			?>
-			Active Timers <label class="label label-default now"><?=date('Y-m-d H:i:s e', time())?></label>
+			Active Timers <label class="label label-default now time-now"><?=date('Y-m-d H:i:s e', time())?></label>
 		</h3>
 		<div>
 			<table class="table table-condensed table-striped table-bordered table-hover">
