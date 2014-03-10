@@ -50,7 +50,7 @@ if($activeTimers->count() > 0)
 				foreach($activeTimers as $id => $timer)
 				{
 					$name = MapItem::find($timer->itemID);
-					$user = User::find($timer->user_id);
+					$user = ApiUser::find($timer->user_id);
 
 					$nowDate = Carbon::now();
 					$timerDate = Carbon::createFromTimeStamp(strtotime($timer->timeExiting));
@@ -186,7 +186,7 @@ if($activeTimers->count() > 0)
 				foreach($oldTimers as $id => $timer)
 				{
 					$name = MapItem::find($timer->itemID);
-					$user = User::find($timer->user_id);
+					$user = ApiUser::find($timer->user_id);
 
 					$nowDate = Carbon::now();
 					$timerDate = Carbon::createFromTimeStamp(strtotime($timer->timeExiting));
