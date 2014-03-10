@@ -21,7 +21,7 @@ if($activeTimers->count() > 0)
 {
 	foreach($activeTimers as $timer)
 	{
-		if($timer->timeExiting > time())
+		if(strtotime($timer->timeExiting) > time())
 		{
 			?>
 			<div id="flash_error" class="alert alert-success">Next Timer: <strong class="timeago" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?></strong></div>
