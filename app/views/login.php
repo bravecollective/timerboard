@@ -51,10 +51,6 @@
 	}
 	?>
 
-	<input type="text" name="username" class="form-control" placeholder="Username" autofocus>
-	<input type="password" name="password" class="form-control" placeholder="Password">
-	<label class="checkbox">
-		<input type="checkbox" name="remember-me" value="remember-me"> Remember me
-	</label>
-	<button class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
+
+	<button class="btn btn-primary btn-lg btn-block" type="submit">Click Here to Authorize</button>
 </form>

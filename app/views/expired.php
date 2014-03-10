@@ -113,7 +113,7 @@ if (Session::has('flash_msg'))
 							?>
 						</td>
 						<td style="<?=$style?>">
-							<?=$user->character_name?>
+							<?=$user->character_name?> (<?=$user->alliance_name?>)
 						</td>
 						<td style="<?=$style?>">
 							<?php

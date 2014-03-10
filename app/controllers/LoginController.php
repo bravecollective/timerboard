@@ -4,6 +4,8 @@ class LoginController extends BaseController {
 
 	const LAYOUT = 'layouts.login';
 
+	private $api = null;
+
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
@@ -17,32 +19,52 @@ class LoginController extends BaseController {
 	|
 	*/
 
+	public function __construct()
+	{
+		$this->api = new Brave\API(Config::get('braveapi.application-endpoint'), Config::get('braveapi.application-identifier'), Config::get('braveapi.local-private-key'), Config::get('braveapi.remote-public-key'));
+	}
+
 	public function loginView()
 	{
 		$this->layout = self::LAYOUT;
 		$view = View::make(self::LAYOUT)
-		        ->nest('navigation', 'navigation')
-		        ->nest('footer', 'parts/footer')
-		        ->nest('page_content', 'login');
+		            ->nest('navigation', 'navigation')
+		            ->nest('footer', 'parts/footer')
+		            ->nest('page_content', 'login');
 
 		return $view;
 	}
 
 	public function loginAction()
 	{
-		$user = array(
-			'token' => Input::get('token')
+		// API Call Args
+		$info_data = array(
+			'success' => route('info'),
+			'failure' => route('info')
 		);
+		$result = $this->api->core->authorize($info_data);
 
-		if (Auth::attempt($user)) {
-			return Redirect::route('home')
-			       ->with('flash_notice', 'You are successfully logged in.');
+		return Redirect::to($result->location);
+	}
+
+	public function infoAction()
+	{
+		$token = Input::get('token', false);
+		if($token == false)
+		{
+			return Redirect::route('login')
+			               ->with('flash_error', 'Login Failed, Please Try Again');
 		}
 
-		// authentication failure! lets go back to the login page
-		return Redirect::route('login')
-		       ->with('flash_error', 'Your username/password combination was incorrect.')
-		       ->withInput();
+		if (Auth::attempt(array('token' => $token), true))
+		{
+			return Redirect::intended('/');
+		}
+		else
+		{
+			return Redirect::route('login')
+			               ->with('flash_error', 'Login Failed, Please Try Again');
+		}
 	}
 
 	public function logoutAction()
@@ -50,7 +72,7 @@ class LoginController extends BaseController {
 		Auth::logout();
 
 		return Redirect::route('home')
-		       ->with('flash_notice', 'You are successfully logged out.');
+		               ->with('flash_notice', 'You are successfully logged out.');
 	}
 
 }
