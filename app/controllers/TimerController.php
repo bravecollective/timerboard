@@ -37,15 +37,17 @@ class TimerController extends BaseController
 		$oldTimers = Timers::where('bashed', '!=', '0')->where('outcome', '!=', '0')->orderBy('timeExiting', 'desc')->paginate(30);
 		$oldTimers->setBaseUrl('expired');
 
-		$this->layout = self::LAYOUT;
-		$view = View::make(self::LAYOUT)
-	        ->nest('navigation', 'navigation')
-	        ->nest('footer', 'parts/footer')
+		// make timers page
+		$pageContentView = View::make('page_content')
 			->nest('parts/timer_table', 'timer_table_new', array('timers' => $activeTimers))
-			->nest('parts/timer_table', 'timer_table_old', array('timers' => $oldTimers))
-			->nest('page_content', 'home', array('activeTimers' => $activeTimers))
-		;
-		return $view;
+			->nest('parts/timer_table', 'timer_table_old', array('timers' => $oldTimers));
+
+		// make main layout page
+		$layoutView = View::make(self::LAYOUT)
+			->with('home', $pageContentView)
+			->nest('navigation', 'navigation')
+			->nest('footer', 'parts/footer');
+		return $layoutView;
 	}
 
 	public function listActiveTimersView()
