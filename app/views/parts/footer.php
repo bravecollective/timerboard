@@ -37,8 +37,8 @@
 
 		setInterval(function()
 		{
-			var isoDate = new Date().toISOString();
-			$('.time-now').html(isoDate);
+			var utcDate = new Date().toUTCString();
+			$('.time-now').html(utcDate);
 		}, 1000);
 	});
 </script>
