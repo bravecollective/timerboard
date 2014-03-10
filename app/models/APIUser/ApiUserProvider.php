@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Auth\GenericUser;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\UserProviderInterface;
 
@@ -14,7 +15,6 @@ class ApiUserProvider implements UserProviderInterface {
 	{
 		try
 		{
-
 			$user = ApiUser::where('token', '=', $credentials['token'])->get();
 			if(isset($user[0]))
 			{
