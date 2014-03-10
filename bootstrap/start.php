@@ -63,8 +63,7 @@ require $framework.'/Illuminate/Foundation/start.php';
 
 Auth::extend('apiuser', function($app)
 {
-	$provider = new ApiUserProvider();
-	return new \Illuminate\Auth\Guard($provider, $app['session']);
+	return new ApiUserProvider();
 });
 
 /*
