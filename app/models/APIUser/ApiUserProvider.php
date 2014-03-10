@@ -15,7 +15,7 @@ class ApiUserProvider implements UserProviderInterface {
 		return $user[0];
 	}
 
-	public function validateCredentials(ApiUser $user, array $credentials)
+	public function validateCredentials(UserInterface $user, array $credentials)
 	{
 		if(isset($user->token) and $user->token == $credentials['token'])
 		{
