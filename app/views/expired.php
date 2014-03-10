@@ -71,7 +71,7 @@ if (Session::has('flash_msg'))
 							{
 								case 3:
 								case 4:
-									$label_class = 'warning';
+									$label_class = 'info';
 									break;
 
 								case 5:

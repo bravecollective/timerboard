@@ -41,12 +41,10 @@ class TimerController extends BaseController
 		$view = View::make(self::LAYOUT)
 	        ->nest('navigation', 'navigation')
 	        ->nest('footer', 'parts/footer')
-	        ->nest('page_content', 'home',
-	               array(
-	                   'activeTimers' => $activeTimers,
-	                   'oldTimers' => $oldTimers
-	               )
-			);
+			->nest('parts/timer_table', 'timer_table_new', array('timers' => $activeTimers))
+			->nest('parts/timer_table', 'timer_table_old', array('timers' => $oldTimers))
+			->nest('page_content', 'home', array('activeTimers' => $activeTimers))
+		;
 		return $view;
 	}
 
