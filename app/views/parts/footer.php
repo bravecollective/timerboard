@@ -1,7 +1,7 @@
 <div id="footer">
 	<div class="container">
 		<p class="text-muted credit">
-			<span class="pull-right">Help</span>
+			<!--<span class="pull-right">Help</span>-->
 			© HERO - 2013
 		</p>
 	</div>
