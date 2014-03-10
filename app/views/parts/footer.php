@@ -33,7 +33,7 @@
 		});
 
 		jQuery.timeago.settings.allowFuture = true;
-		jQuery("td.timeago").timeago();
+		jQuery(".timeago").timeago();
 
 		setInterval(function()
 		{
