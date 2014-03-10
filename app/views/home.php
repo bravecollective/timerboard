@@ -46,7 +46,7 @@ if($activeTimers->count() > 0)
 					<th>Structure</th>
 					<th>Type</th>
 					<th>Timer</th>
-					<th>Date</th>
+					<th>EVE Time</th>
 					<th>Win/Loss</th>
 					<th>User</th>
 					<th>Actions</th>
@@ -172,7 +172,7 @@ if($activeTimers->count() > 0)
 					<th>Structure</th>
 					<th>Type</th>
 					<th>Timer</th>
-					<th>Date</th>
+					<th>EVE Time</th>
 					<th>Win/Loss</th>
 					<th>User</th>
 					<th>Actions</th>
