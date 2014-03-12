@@ -72,17 +72,24 @@ use Carbon\Carbon;
 			</td>
 			<td style="<?=$style?>">
 				<?php
-				if($timer->bashed === 0 and strtotime($timer->timeExiting) > time())
+				if($timer->bashed === 0)
 				{
 					?><label class="label label-info">NO DATA</label><?php
 				}
-				else if($timer->bashed === 0 and strtotime($timer->timeExiting) < time())
+				else
 				{
-					?><label class="label label-danger">NO</label><?php
-				}
-				elseif($timer->bashed === 1)
-				{
-					?><label class="label label-success">YES</label><?php
+					if($timer->outcome === 1)
+					{
+						?><label class="label label-success">WIN</label><?php
+					}
+					else if($timer->outcome === 2)
+					{
+						?><label class="label label-danger">LOSS</label><?php
+					}
+					else
+					{
+						?><label class="label label-info">Outcome Needed</label><?php
+					}
 				}
 				?>
 			</td>
