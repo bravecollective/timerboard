@@ -38,11 +38,15 @@ use Carbon\Carbon;
 		{
 			$class = 'danger';
 		}
+
+		// The database does not store system names. Find roman numerals and split out the basename.
+		$sys_tmp = preg_split("/\ [IVX]+/", $name->itemName);
+		$system = $sys_tmp[0];
 		?>
 		<tr class="<?=$class?>" style="<?=$style?>" id="item<?=$id?>" hours="<?=$hours?>">
 			<td style="<?=$style?>">
 				<label title="<?=$name->itemID?>" class="label <?= ($name->groupID == Timers::$POCOGroupID ? 'label-primary' : 'label-default') ?>" style="padding: .2em .7em .3em;"><?= ($name->groupID == Timers::$POCOGroupID ? 'P' : 'M') ?></label>
-				<?=$name->itemName?>
+				<a href="http://evemaps.dotlan.net/system/<?=$system?>"><?=$name->itemName?></a>
 			</td>
 			<td style="<?=$style?>">
 				<?php
