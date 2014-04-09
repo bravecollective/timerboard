@@ -82,9 +82,20 @@ class ApiUserProvider implements UserProviderInterface {
 		$permission = 0;
 		foreach(Config::get('braveapi.auth-edit-tags') as $tag)
 		{
-			if(in_array($tag, $result->tags) and $permission == 0) // check for special group
+			if(in_array($tag, $result->tags)) // check for special group
 			{
 				$permission = 1;
+				break;
+			}
+		}
+
+		// per user overrides
+		foreach(Config::get('braveapi.auth-edit-users') as $id)
+		{
+			if($id == $result->character->id) // check for special group
+			{
+				$permission = 1;
+				break;
 			}
 		}
 

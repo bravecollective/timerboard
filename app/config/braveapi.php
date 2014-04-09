@@ -12,11 +12,12 @@ return array(
 	|
 	*/
 
-	'application-endpoint' => '', // must be HTTPS
+	'application-endpoint' => '',   // must be HTTPS
 	'application-identifier' => '', // from core auth
-	'local-private-key' => '', // from local key generation
-	'local-public-key'  => '', // from local key generation, not used
-	'remote-public-key' => '', // form core auth
-	'auth-edit-tags' => array(), // form core auth
+	'local-private-key' => '',      // from local key generation
+	'local-public-key'  => '',      // from local key generation, not used
+	'remote-public-key' => '',      // form core auth
+	'auth-edit-tags' => array(),    // form core auth
+	'auth-edit-users' => array(),    // form core auth
 
 );
