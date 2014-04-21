@@ -48,6 +48,16 @@ class ApiUserProvider implements UserProviderInterface {
 		}
 	}
 
+	public function retrieveByToken($identifier, $token)
+	{
+
+	}
+
+	public function updateRememberToken(UserInterface $user, $token)
+	{
+
+	}
+
 	public function validateCredentials(UserInterface $user, array $credentials)
 	{
 		if(isset($user->token) and $user->token == $credentials['token'])

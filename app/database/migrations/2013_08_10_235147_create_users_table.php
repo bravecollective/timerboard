@@ -23,6 +23,19 @@ class CreateUsersTable extends Migration {
 			$t->timestamps();
 		});
 
+		Schema::create('api_users', function($t)
+		{
+			$t->increments('id')->unsigned();
+			$t->string('token', 64);
+			$t->string('character_name', 128);
+			$t->integer('alliance_id');
+			$t->text('alliance_name');
+			$t->text('tags');
+			$t->integer('status');
+			$t->integer('permission');
+			$t->timestamps();
+		});
+
 		Schema::create('timers', function($t)
 		{
 			$t->increments('id')->unsigned();
