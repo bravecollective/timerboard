@@ -45,6 +45,7 @@ class CreateUsersTable extends Migration {
 			$t->integer('bashed');
 			$t->integer('outcome');
 			$t->integer('timerType');
+			$t->integer('type');
 			$t->dateTime('timeExiting');
 			$t->integer('user_id');
 			$t->timestamps();
