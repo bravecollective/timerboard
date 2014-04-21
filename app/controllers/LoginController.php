@@ -56,7 +56,7 @@ class LoginController extends BaseController {
 			               ->with('flash_error', 'Login Failed, Please Try Again');
 		}
 
-		if (Auth::attempt(array('token' => $token), true))
+		if (Auth::attempt(array('token' => $token)))
 		{
 			return Redirect::intended('/');
 		}
