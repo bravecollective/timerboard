@@ -7,7 +7,7 @@ class MapItem extends Eloquent{
 	 *
 	 * @var string
 	 */
-	protected $table = 'mapDenormalize';
+	protected $table = 'mapdenormalize';
 
 	/**
 	 * The database connection used by the model.
