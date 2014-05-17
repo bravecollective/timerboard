@@ -19,6 +19,7 @@ class TimerController extends BaseController
 	|
 	*/
 
+
 	public function listAllTimersView()
 	{
 		$activeTimers = Timers::where('outcome', '=', '0')->orderBy('timeExiting', 'asc')->get();
