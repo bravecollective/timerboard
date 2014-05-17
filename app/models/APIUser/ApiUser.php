@@ -23,7 +23,7 @@ class ApiUser extends Eloquent implements UserInterface {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array('id', 'token', 'character_name', 'alliance_id', 'alliance_name', 'tags', 'status', 'permission');
+	protected $fillable = array('id', 'token', 'remember_token', 'character_name', 'alliance_id', 'alliance_name', 'tags', 'status', 'permission');
 
 	/**
 	 * Get the unique identifier for the user.
@@ -43,6 +43,21 @@ class ApiUser extends Eloquent implements UserInterface {
 	public function getAuthPassword()
 	{
 		return $this->token;
+	}
+
+	public function getRememberToken()
+	{
+		return $this->remember_token;
+	}
+
+	public function setRememberToken($value)
+	{
+		$this->remember_token = $value;
+	}
+
+	public function getRememberTokenName()
+	{
+		return 'remember_token';
 	}
 
 }

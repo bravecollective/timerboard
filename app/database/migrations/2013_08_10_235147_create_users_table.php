@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration {
 		{
 			$t->increments('id')->unsigned();
 			$t->string('token', 64);
+			$t->text('remember_token');
 			$t->string('character_name', 128);
 			$t->integer('alliance_id');
 			$t->text('alliance_name');

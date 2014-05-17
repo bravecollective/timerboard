@@ -40,22 +40,15 @@ class ApiUserProvider implements UserProviderInterface {
 		}
 		catch(Exception $e)
 		{
+			echo "\n\n";
+			echo $e->getMessage();
+			echo "\n\n";
 			echo "Credentials:\n";
 			var_dump($credentials);
 			echo "\n\n";
 			exit;
 			return null;
 		}
-	}
-
-	public function retrieveByToken($identifier, $token)
-	{
-
-	}
-
-	public function updateRememberToken(UserInterface $user, $token)
-	{
-
 	}
 
 	public function validateCredentials(UserInterface $user, array $credentials)
@@ -82,8 +75,18 @@ class ApiUserProvider implements UserProviderInterface {
 		catch(Exception $e)
 		{
 			return Redirect::route('logintest')
-				->with('flash_error', 'Login Failed, Please Try Again');
+			               ->with('flash_error', 'Login Failed, Please Try Again');
 		}
+	}
+
+	public function retrieveByToken($identifier, $token)
+	{
+
+	}
+
+	public function updateRememberToken(UserInterface $user, $token)
+	{
+
 	}
 
 	private function updateUser($token, $result)
@@ -115,15 +118,16 @@ class ApiUserProvider implements UserProviderInterface {
 		{
 			// no user found, create it
 			$userfound = ApiUser::create(array(
-				                'id' => $result->character->id,
-				                'token' => $token,
-				                'character_name' => $result->character->name,
-				                'alliance_id' => $result->alliance->id,
-				                'alliance_name' => $result->alliance->name,
-				                'tags' => json_encode($result->tags),
-				                'status' => 1,
-				                'permission' => $permission
-			                ));
+				                             'id' => $result->character->id,
+				                             'token' => $token,
+				                             'remember_token' => '',
+				                             'character_name' => $result->character->name,
+				                             'alliance_id' => $result->alliance->id,
+				                             'alliance_name' => $result->alliance->name,
+				                             'tags' => json_encode($result->tags),
+				                             'status' => 1,
+				                             'permission' => $permission
+			                             ));
 		}
 		else
 		{
