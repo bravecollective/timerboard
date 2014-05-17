@@ -36,7 +36,7 @@ Please fork the repo and submit your changes with a pull request :)
 
 ## License
 
-Brave Collective Core Services has been released under the MIT Open Source license.  All contributors agree to transfer ownership of their code to Matthew Glinski for release under this license.  (This is to mitigate issues in the future.)
+Brave Collective Core Services has been released under the MIT Open Source license.
 
 ### The MIT License
 
