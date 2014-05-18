@@ -66,7 +66,7 @@ use Carbon\Carbon;
 				<label class="label label-<?=$label_class?>"><?=Timers::$structureTypes[$timer->structureType]?></label>
 			</td>
 			<td style="<?=$style?>">
-				<label class="label label-<?=($timer->structureStatus === 1 ? 'primary' : 'danger')?>"><?=Timers::$structureStatus[$timer->structureStatus]?></label>
+				<label class="label label-<?=($timer->structureStatus === '1' ? 'primary' : 'danger')?>"><?=Timers::$structureStatus[$timer->structureStatus]?></label>
 			</td>
 			<td style="<?=$style?>" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>" class="timeago">
 				<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?>
