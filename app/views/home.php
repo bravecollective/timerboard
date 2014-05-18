@@ -36,7 +36,7 @@ if($activeTimers->count() > 0)
 	<div class="col-lg-12">
 		<h3>
 			<?php
-			if(Auth::user()->permission === 1)
+			if(Auth::user()->permission === '1')
 			{
 				?>
 				<a href="<?=URL::to('add')?>" class="btn btn-success pull-right btn-sm">New</a>
