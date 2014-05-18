@@ -30,11 +30,11 @@ use Carbon\Carbon;
 
 		$class = '';
 		$style = '';
-		if($timer->timerType == 0)
+		if($timer->timerType === '0')
 		{
 			$class = 'success';
 		}
-		else if($timer->timerType == 1)
+		else if($timer->timerType === '1')
 		{
 			$class = 'danger';
 		}
@@ -53,12 +53,12 @@ use Carbon\Carbon;
 				$label_class = 'default';
 				switch($timer->structureType)
 				{
-					case 3:
-					case 4:
+					case '3':
+					case '4':
 						$label_class = 'info';
 						break;
 
-					case 5:
+					case '5':
 						$label_class = 'danger';
 						break;
 				}
@@ -76,23 +76,23 @@ use Carbon\Carbon;
 			</td>
 			<td style="<?=$style?>">
 				<?php
-				if($timer->bashed === 0)
+				if($timer->bashed === '0')
 				{
 					?><label class="label label-info">NO DATA</label><?php
 				}
 				else
 				{
-					if($timer->outcome === 1)
+					if($timer->outcome === '1')
 					{
 						?><label class="label label-success">WIN</label><?php
 					}
-					else if($timer->outcome === 2)
+					else if($timer->outcome === '2')
 					{
 						?><label class="label label-danger">LOSS</label><?php
 					}
 					else
 					{
-						?><label class="label label-info">Outcome Needed  (<?=var_dump($timer->outcome)?>)</label><?php
+						?><label class="label label-info">Outcome Needed</label><?php
 					}
 				}
 				?>
@@ -102,15 +102,15 @@ use Carbon\Carbon;
 			</td>
 			<td style="<?=$style?>">
 				<?php
-				if(Auth::user()->permission === 1)
+				if(Auth::user()->permission === '1')
 				{
-					if($minutes > -15 and $timer->outcome === 0)
+					if($minutes > -15 and $timer->outcome === '0')
 					{
 						?>
 						<a href="<?=URL::route('delete_timer', array($timer->id))?>" class="btn btn-danger btn-xs deleteButton">Delete</a>
 					<?php
 					}
-					else if($minutes <= -15 and $timer->outcome === 0)
+					else if($minutes <= -15 and $timer->outcome === '0')
 					{
 						?>
 						<a href="<?=URL::route('win_timer', array($timer->id))?>" class="btn btn-primary btn-xs">Win</a>
