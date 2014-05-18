@@ -92,7 +92,7 @@ use Carbon\Carbon;
 					}
 					else
 					{
-						?><label class="label label-info">Outcome Needed</label><?php
+						?><label class="label label-info">Outcome Needed  (<?=var_dump($timer->outcome)?>)</label><?php
 					}
 				}
 				?>
