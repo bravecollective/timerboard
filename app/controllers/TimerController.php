@@ -130,7 +130,7 @@ class TimerController extends BaseController
 	public function bashTimerAction($id)
 	{
 		$timer = Timers::find($id);
-		if($timer != false and $timer->bashed !== 1)
+		if($timer != false and $timer->bashed !== '1')
 		{
 			$timer->bashed = 1;
 			$timer->save();
@@ -148,7 +148,7 @@ class TimerController extends BaseController
 	public function winTimerAction($id)
 	{
 		$timer = Timers::find($id);
-		if($timer != false and $timer->outcome === 0)
+		if($timer != false and $timer->outcome === '0')
 		{
 			$timer->bashed = 1;
 			$timer->outcome = 1;
@@ -167,7 +167,7 @@ class TimerController extends BaseController
 	public function failTimerAction($id)
 	{
 		$timer = Timers::find($id);
-		if($timer != false and $timer->outcome === 0)
+		if($timer != false and $timer->outcome === '0')
 		{
 			$timer->bashed = 1;
 			$timer->outcome = 2;
@@ -186,7 +186,7 @@ class TimerController extends BaseController
 	public function deleteTimerAction($id)
 	{
 		$timer = Timers::find($id);
-		if($timer != false and $timer->bashed !== 1)
+		if($timer != false and $timer->bashed !== '1')
 		{
 			$timer->delete();
 			return Redirect::route('home')
