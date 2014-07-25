@@ -14,6 +14,10 @@
 App::before(function($request)
 {
 	date_default_timezone_set('UTC');
+	if ((time() - Session::activity()) > (Config::get('session.lifetime') * 60))
+	{
+		Auth::logout();
+	}
 });
 
 
