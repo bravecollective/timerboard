@@ -14,10 +14,13 @@
 App::before(function($request)
 {
 	date_default_timezone_set('UTC');
-	if ((time() - Session::activity()) > (Config::get('session.lifetime') * 60))
+
+	if (Session::get('LAST_ACTIVITY') && (time() - Session::get('LAST_ACTIVITY')) > 1000)
 	{
+		// Delete session data created by this app:
 		Auth::logout();
 	}
+	Session::put('LAST_ACTIVITY', time());
 });
 
 
