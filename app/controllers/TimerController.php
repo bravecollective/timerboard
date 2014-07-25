@@ -126,7 +126,93 @@ class TimerController extends BaseController
 				->with('flash_msg', 'New Timer Added');
 		}
 	}
-
+        
+        public function detailsTimerView($id)
+        {
+                $timer = Timers::find($id);
+                $this->layout = self::LAYOUT;
+		$view = View::make(self::LAYOUT)
+                            ->nest('navigation', 'navigation')
+                            ->nest('footer', 'parts/footer')
+                            ->nest('page_content', 'details', array('timer' => $timer));
+		return $view;
+        }
+        
+        public function detailsTimerAction($id)
+        {
+                $timer = Timers::find($id);
+                $content = Input::get('notes');
+                if(!empty($content))
+                {
+                        $content = nl2br(htmlentities($content));
+                        $note = new Notes(array('content' => $content));
+                        $note->user()->associate(Auth::user());
+                        $timer->notes()->save($note);
+                        return Redirect::route('details', $timer->id)
+                                        ->with('flash_msg', 'Note added.');
+                }
+                return Redirect::route('details', $timer->id)
+                        ->with('flash_error', 'Unable to add note. Try adding some content.');
+        }
+        
+        public function signUpTimerAction($id)
+        {
+                $timer = Timers::find($id);
+                $role = Request::get('role');
+                $confirmed = Request::get('confirmed', true);
+                if(is_null($role) or !array_key_exists($role, Timers::$signUpRoles))
+                {
+                        return Redirect::route('details', $timer->id)
+                                ->with('flash_error', 'Error signing up.');
+                }
+                if($timer->isUserSignedUpAs(Auth::user()->id, $role))
+                {
+                        return Redirect::route('details', $timer->id)
+                                ->with('flash_error', 'Already signed up for this timer.');
+                }
+                $timer->signUps()->attach(Auth::user()->id, array('role' => $role, 'confirmed' => $confirmed));
+                return Redirect::route('details', $timer->id)
+                        ->with('flash_msg', 'Signed up successfully.');
+        }
+        
+        public function deleteSignUpTimerAction($id)
+        {
+                $timer = Timers::find($id);
+                $role = Request::get('role');
+                if(is_null($role) or !array_key_exists($role, Timers::$signUpRoles))
+                {
+                        return Redirect::route('details', $timer->id)
+                                ->with('flash_error', 'Error removing sign up.');
+                }
+                if($timer->isUserSignedUpAs(Auth::user()->id, $role))
+                {       
+                        // This is so dumb, but it's the only way I could find to detach based on an extra column
+                        // See here: https://github.com/laravel/framework/issues/3585
+                        $timer->signUps()->newPivotStatementForId(Auth::user()->id)->where('role', $role)->delete();
+                        return Redirect::route('details', $timer->id)
+                                ->with('flash_msg', 'Removed sign up.');
+                }
+                return Redirect::route('details', $timer->id)
+                        ->with('flash_error', 'Not signed up for this timer.');
+        }
+        
+        public function modifySignUpTimerAction($id)
+        {
+                $timer = Timers::find($id);
+                $role = Request::get('role');
+                $confirmed = Request::get('confirmed');
+                if(is_null($role) or is_null($confirmed) or !array_key_exists($role, Timers::$signUpRoles))
+                {
+                        return Redirect::route('details', $timer->id)
+                                ->with('flash_error', 'Error modifying sign up.');
+                }
+                
+                $signUp = $timer->signUps()->newPivotStatementForId(Auth::user()->id)->where('role', $role);
+                $signUp->update(array('confirmed' => $confirmed));
+                return Redirect::route('details', $timer->id)
+                        ->with('flash_msg', 'Updated sign up successfully.');
+        }
+        
 	public function bashTimerAction($id)
 	{
 		$timer = Timers::find($id);

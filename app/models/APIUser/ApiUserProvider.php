@@ -111,6 +111,10 @@ class ApiUserProvider implements UserProviderInterface {
 				break;
 			}
 		}
+                
+                // Get alliance info
+                $api = new Brave\API(Config::get('braveapi.application-endpoint'), Config::get('braveapi.application-identifier'), Config::get('braveapi.local-private-key'), Config::get('braveapi.remote-public-key'));
+                $alliance_result = $api->lookup->alliance(array('search' => $result->alliance->id, 'only' => 'short'));
 
 		// check for existing user
 		$userfound = ApiUser::find($result->character->id);
@@ -124,6 +128,7 @@ class ApiUserProvider implements UserProviderInterface {
 				                             'character_name' => $result->character->name,
 				                             'alliance_id' => $result->alliance->id,
 				                             'alliance_name' => $result->alliance->name,
+                                                             'alliance_ticker' => $alliance_result->short,
 				                             'tags' => json_encode($result->tags),
 				                             'status' => 1,
 				                             'permission' => $permission
@@ -139,6 +144,7 @@ class ApiUserProvider implements UserProviderInterface {
 			$userfound->character_name = $result->character->name;
 			$userfound->alliance_id = $result->alliance->id;
 			$userfound->alliance_name = $result->alliance->name;
+                        $userfound->alliance_ticker = $alliance_result->short;
 			$userfound->tags = json_encode($result->tags);
 
 			$userfound->save();

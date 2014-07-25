@@ -100,13 +100,19 @@ use Carbon\Carbon;
 			<td style="<?=$style?>">
 				<?=$user->character_name?> (<?=$user->alliance_name?>)
 			</td>
-			<td style="<?=$style?>">
+			<td style="<?=$style?>" class="text-right">
 				<?php
+                                if(Auth::user()->canViewDetails())
+                                {
+                                        ?>
+                                        <a href="<?=URL::route('details', array($timer->id))?>" class="btn btn-info btn-xs">Details</a>
+                                <?php
+                                }
 				if(Auth::user()->permission === '1')
 				{
 					if($minutes > -15 and $timer->outcome === '0')
 					{
-						?>
+                                                ?>
 						<a href="<?=URL::route('delete_timer', array($timer->id))?>" class="btn btn-danger btn-xs deleteButton">Delete</a>
 					<?php
 					}

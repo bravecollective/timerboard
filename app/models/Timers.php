@@ -77,5 +77,52 @@ class Timers extends Eloquent{
 		'0' => 'Offensive',
 		'1' => 'Defensive'
 	);
-
+        
+        public static $signUpRoles = array(
+                '0' => 'FC',
+                '1' => 'Titan'
+        );
+        
+        /**
+	 * Many-to-many relationship to ApiUser for signing up for timers.
+	 */
+        public function signUps()
+        {
+                return $this->belongsToMany('ApiUser', 'timer_sign_ups')->withPivot('role', 'confirmed');
+        }
+        
+        /**
+	 * One-to-many relationship to notes
+	 */
+        public function notes()
+        {
+                return $this->hasMany('Notes');
+        }
+        
+        /**
+	 * Convenience method for checking if a user has signed up for this timer instance.
+         * 
+         * @param int UserId ID of user to check
+         * @param role ID of role from 
+         * @return bool True if signed up, otherwise false
+	 */
+        public function isUserSignedUpAs($userId, $roleId)
+        {
+                return !$this->signUps()->wherePivot('api_user_id', $userId)
+                        ->wherePivot('role', $roleId)->get()->isEmpty();
+        }
+        
+        public function userCanSignUp($roleId)
+        {       
+                $role = Timers::$signUpRoles[$roleId];
+                if($role == 'FC' and Auth::user()->isFC())
+                {
+                        return true;
+                }
+                if($role == 'Titan' and Auth::user()->isTitanPilot())
+                {
+                        return true;
+                }
+                return false;
+        }
 }
