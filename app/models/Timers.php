@@ -50,7 +50,9 @@ class Timers extends Eloquent{
 	 * @var array
 	 */
 	public static $structureTypes = array(
-		'1' => 'POS',
+                '6' => 'POS [S]',
+                '7' => 'POS [M]',
+                '1' => 'POS [L]',
 		'2' => 'POCO',
 		'3' => 'Station',
 		'4' => 'I-Hub',
