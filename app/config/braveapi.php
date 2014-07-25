@@ -18,6 +18,8 @@ return array(
 	'local-public-key'  => '',      // from local key generation, not used
 	'remote-public-key' => '',      // form core auth
 	'auth-edit-tags' => array(),    // form core auth
+        'auth-fc-tags' => array(),      // from core auth
+        'auth-titan-tags' => array(),   // from core auth
 	'auth-edit-users' => array(),    // form core auth
 
 );

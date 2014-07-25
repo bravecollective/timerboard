@@ -38,6 +38,11 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::guest('login');
 });
 
+Route::filter('details', function()
+{
+        if(Auth::guest() or !Auth::user()->canViewDetails()) return Redirect::route('home');
+});
+
 Route::filter('edit', function()
 {
 	if (!Auth::check() or Auth::user()->permission !== '1') return Redirect::route('home');

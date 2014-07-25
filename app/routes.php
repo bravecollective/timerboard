@@ -27,14 +27,23 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('/', array('as' => 'home', 'uses' => 'TimerController@listAllTimersView'));
 	Route::get('active', array('as' => 'active', 'uses' => 'TimerController@listActiveTimersView'));
 	Route::get('expired', array('as' => 'expired', 'uses' => 'TimerController@listExpiredTimersView'));
-
+        
+        Route::group(array('before' => 'details'), function()
+        {
+            Route::get('details/{id}', array('as' => 'details', 'uses' => 'TimerController@detailsTimerView'));
+            Route::post('details/{id}', array('uses' => 'TimerController@detailsTimerAction'));
+            Route::get('sign_up/{id}', array('as' => 'sign_up', 'uses' => 'TimerController@signUpTimerAction'));
+            Route::get('delete_sign_up/{id}', array('as' => 'delete_sign_up', 'uses' => 'TimerController@deleteSignUpTimerAction'));
+            Route::get('modify_sign_up/{id}', array('as' => 'modify_sign_up', 'uses' => 'TimerController@modifySignUpTimerAction'));
+        });
+        
 	Route::group(array('before' => 'edit'), function()
 	{
 		Route::get('search', array('as' => 'search_map', 'uses' => 'TimerController@searchCelestialAction'));
 
 		Route::get('add', array('as' => 'add_timer', 'uses' => 'TimerController@addTimerView'));
 		Route::post('add', array('uses' => 'TimerController@addTimerAction'));
-
+                              
 		// modify status
 		Route::get('bash/{id}', array('as' => 'bash_timer', 'uses' => 'TimerController@bashTimerAction'));
 		Route::get('win/{id}', array('as' => 'win_timer', 'uses' => 'TimerController@winTimerAction'));
