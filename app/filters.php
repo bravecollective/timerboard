@@ -47,7 +47,7 @@ Route::filter('auth', function()
 
 Route::filter('details', function()
 {
-        if(Auth::guest() or !Auth::user()->canViewDetails()) return Redirect::route('home');
+    if(Auth::guest() or !Auth::user()->canViewDetails()) return Redirect::route('home');
 });
 
 Route::filter('edit', function()
