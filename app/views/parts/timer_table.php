@@ -85,7 +85,7 @@ use Carbon\Carbon;
 				<abbr title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>" data-livestamp="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?></span>
 			</td>
 			<td style="<?=$style?>">
-				<?=date('Y-m-d H:i:s e', strtotime($timer->timeExiting))?>
+				<span class="moment" data-moment="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=date('Y-m-d H:i:s e', strtotime($timer->timeExiting))?></span>
 			</td>
 			<td style="<?=$style?>">
 				<?php
