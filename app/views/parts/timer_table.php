@@ -50,14 +50,14 @@ use Carbon\Carbon;
 				// Display timer type as an icon to help with red/green colorblind users
 				if ($timer->timerType === '0') {
 					?>
-					<label class="label label-success" style="padding: .2em .7em .3em;">
+					<label class="label label-success">
 						<span class="glyphicon glyphicon-fire" title="Offensive Timer"></span>
 					</label>
 					<?php
 				}
 				else {
 					?>
-					<label class="label 'label-danger" style="padding: .2em .7em .3em;">
+					<label class="label label-danger">
 						<span class="glyphicon glyphicon-tower" title="Defensive Timer"</span>
 					</label>
 					<?php	
