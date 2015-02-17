@@ -12,7 +12,7 @@ use Carbon\Carbon;
 		<th>Relative Time</th>
 		<th>EVE Time</th>
 		<th>Win/Loss</th>
-		<th>User</th>
+		<!--<th>User</th>-->
 		<th>Actions</th>
 	</tr>
 	</thead>
@@ -113,9 +113,11 @@ use Carbon\Carbon;
 				}
 				?>
 			</td>
+			<!--
 			<td style="<?=$style?>">
 				<?=$user->character_name?> (<?=$user->alliance_name?>)
 			</td>
+			-->
 			<td style="<?=$style?>" class="text-right">
 				<?php
                                 if(Auth::user()->canViewDetails())
