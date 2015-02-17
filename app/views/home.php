@@ -24,7 +24,7 @@ if($activeTimers->count() > 0)
 		if(strtotime($timer->timeExiting) > time())
 		{
 			?>
-			<div id="flash_error" class="alert alert-success">Next Timer: <strong class="timeago" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?></strong></div>
+			<div id="flash_error" class="alert alert-success">Next Timer: <strong data-livestamp="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?></strong></div>
 			<?php
 			break;
 		}
