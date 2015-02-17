@@ -50,19 +50,16 @@ use Carbon\Carbon;
 				// Display timer type as an icon to help with red/green colorblind users
 				if ($timer->timerType === '0') {
 					?>
-					<label class="label label-success">
-						<span class="glyphicon glyphicon-fire" title="Offensive Timer"></span> 
-					</label> 
+					<label class="label label-success"><span class="glyphicon glyphicon-fire" title="Offensive Timer"></span></label> 
 					<?php
 				}
 				else {
 					?>
-					<label class="label label-danger">
-						<span class="glyphicon glyphicon-tower" title="Defensive Timer"></span> 
-					</label> 
+					<label class="label label-danger"><span class="glyphicon glyphicon-tower" title="Defensive Timer"></span></label> 
 					<?php	
 				}
 				?>
+				&nbsp;
 				<a href="http://evemaps.dotlan.net/system/<?=$system?>"><?=$name->itemName?></a>
 			</td>
 			<td style="<?=$style?>">
