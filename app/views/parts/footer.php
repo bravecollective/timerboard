@@ -38,9 +38,6 @@
 			return false;
 		});
 
-		jQuery.timeago.settings.allowFuture = true;
-		jQuery(".timeago").timeago();
-
 		setInterval(function()
 		{
 			var utcDate = new Date().toUTCString();
