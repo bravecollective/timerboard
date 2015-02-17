@@ -19,8 +19,8 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script src="<?=URL::asset('js/bootstrap.min.js')?>"></script>
-	<script src="<?=URL::asset('js/jquery.timeago.js')?>"></script>
-	<!--<script src="<?=URL::asset('js/jquery-ui-timepicker-addon.js')?>"></script>-->
+	<script src="<?=URL::asset('js/jquery.moment.js');?>"></script>
+	<script src="<?=URL::asset('js/livestamp.js');?>"></script>
 	<script src="<?=URL::asset('js/select2.min.js')?>"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.min.js"></script>
 
