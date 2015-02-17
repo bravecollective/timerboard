@@ -116,10 +116,12 @@ class ApiUserProvider implements UserProviderInterface {
         $api = new Brave\API(Config::get('braveapi.application-endpoint'), Config::get('braveapi.application-identifier'), Config::get('braveapi.local-private-key'), Config::get('braveapi.remote-public-key'));
         $alliance_result = $api->lookup->alliance(array('search' => $result->alliance->id, 'only' => 'short'));
 
+		/*
 		if($result->character->id == 93647416)
 		{
 			dd($result);
 		}
+		*/
 
 		// check for existing user
 		$userfound = ApiUser::find($result->character->id);
