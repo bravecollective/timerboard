@@ -138,7 +138,7 @@ if(!$timer->notes->isEmpty())
         {
                 ?><blockquote>
                         <?=$note->content?>
-                        <footer><?=$note->user->getNameWithTicker()?> <em data-livestamp="<?=Carbon::createFromTimeStamp(strtotime($note->created_at))->toISO8601String()?>"><?=$note->created?></em></footer>
+                        <footer><?=$note->user->getNameWithTicker()?> <em data-livestamp="<?=$note->created_at->toISO8601String()?>"><?=$note->created_at?></em></footer>
                 </blockquote>        
         <?php
         }
