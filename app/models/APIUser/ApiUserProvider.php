@@ -134,7 +134,6 @@ class ApiUserProvider implements UserProviderInterface {
 				'alliance_id' => $result->alliance->id,
 				'alliance_name' => $result->alliance->name,
 				'alliance_ticker' => $alliance_result->short,
-				'permissions' => $alliance_result->short,
 				'tags' => json_encode($result->tags),
 				'status' => 1,
 				'permission' => $permission
@@ -150,8 +149,8 @@ class ApiUserProvider implements UserProviderInterface {
 			$userfound->character_name = $result->character->name;
 			$userfound->alliance_id = $result->alliance->id;
 			$userfound->alliance_name = $result->alliance->name;
-            $userfound->permissions = $alliance_result->short;
-			$userfound->permissions = $alliance_result->short;
+        		$userfound->alliance_ticker = $alliance_result->short;
+			$userfound->permission = $permission;
 			$userfound->tags = json_encode($result->tags);
 
 			$userfound->save();
