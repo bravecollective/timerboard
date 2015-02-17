@@ -82,7 +82,7 @@ use Carbon\Carbon;
 				<label class="label label-<?=($timer->structureStatus === '1' ? 'primary' : 'danger')?>"><?=Timers::$structureStatus[$timer->structureStatus]?></label>
 			</td>
 			<td style="<?=$style?>" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>">
-				<span data-livestamp="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?></span>
+				<abbr title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>" data-livestamp="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?></span>
 			</td>
 			<td style="<?=$style?>">
 				<?=date('Y-m-d H:i:s e', strtotime($timer->timeExiting))?>
