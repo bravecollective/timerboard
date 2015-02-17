@@ -47,19 +47,6 @@ use Carbon\Carbon;
 		<tr class="<?=$class?>" style="<?=$style?>" id="item<?=$id?>" hours="<?=$hours?>">
 			<td style="<?=$style?>">
 				<label title="<?=$name->itemID?>" class="label <?= ($name->groupID == Timers::$POCOGroupID ? 'label-primary' : 'label-default') ?>" style="padding: .2em .7em .3em;"><?= ($name->groupID == Timers::$POCOGroupID ? 'P' : 'M') ?></label>
-				<?php
-				// Display timer type as an icon to help with red/green colorblind users
-				if ($timer->timerType === '0') {
-					?>
-					<label class="label label-warning" title="Offensive Timer"><span class="glyphicon glyphicon-plane"></span></label> 
-					<?php
-				}
-				else {
-					?>
-					<label class="label label-warning" title="Defensive Timer"><span class="glyphicon glyphicon-tower"></span></label> 
-					<?php	
-				}
-				?>
 				<a href="http://evemaps.dotlan.net/system/<?=$system?>"><?=$name->itemName?></a>
 			</td>
 			<td style="<?=$style?>">
@@ -80,6 +67,19 @@ use Carbon\Carbon;
 				<label class="label label-<?=$label_class?>"><?=Timers::$structureTypes[$timer->structureType]?></label>
 			</td>
 			<td style="<?=$style?>">
+				<?php
+				// Display timer type as an icon to help with red/green colorblind users
+				if ($timer->timerType === '0') {
+					?>
+					<label class="label label-warning" title="Offensive Timer"><span class="glyphicon glyphicon-plane"></span></label> 
+					<?php
+				}
+				else {
+					?>
+					<label class="label label-warning" title="Defensive Timer"><span class="glyphicon glyphicon-tower"></span></label> 
+					<?php	
+				}
+				?>
 				<label class="label label-<?=($timer->structureStatus === '1' ? 'primary' : 'danger')?>"><?=Timers::$structureStatus[$timer->structureStatus]?></label>
 			</td>
 			<td style="<?=$style?>" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>">
