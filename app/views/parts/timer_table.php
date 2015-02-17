@@ -46,6 +46,22 @@ use Carbon\Carbon;
 		<tr class="<?=$class?>" style="<?=$style?>" id="item<?=$id?>" hours="<?=$hours?>">
 			<td style="<?=$style?>">
 				<label title="<?=$name->itemID?>" class="label <?= ($name->groupID == Timers::$POCOGroupID ? 'label-primary' : 'label-default') ?>" style="padding: .2em .7em .3em;"><?= ($name->groupID == Timers::$POCOGroupID ? 'P' : 'M') ?></label>
+				<?php
+				// Display timer type as an icon to help with red/green colorblind users
+				if ($timer->timerType === '0') {
+					?>
+					<label class="label label-success" style="padding: .2em .7em .3em;">
+						<span class="glyphicon glyphicon-fire" title="Offensive Timer"></span>
+					</label>
+					<?php
+				}
+				else {
+					?>
+					<label class="label 'label-danger" style="padding: .2em .7em .3em;">
+						<span class="glyphicon glyphicon-tower" title="Defensive Timer"</span>
+					</label>
+					<?php	
+				}
 				<a href="http://evemaps.dotlan.net/system/<?=$system?>"><?=$name->itemName?></a>
 			</td>
 			<td style="<?=$style?>">
