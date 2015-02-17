@@ -10,6 +10,12 @@
 	$(document).ready(function()
 	{
 		$('[data-toggle=tooltip]').tooltip();
+		
+		$('.moment').each(function(){
+			var mr = moment($(this).data('moment'));
+			$(this).html(mr.calendar());
+		});
+		
 		$('.deleteButton').on('click', function(e)
 		{
 			e.preventDefault();
