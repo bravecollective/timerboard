@@ -51,15 +51,15 @@ use Carbon\Carbon;
 				if ($timer->timerType === '0') {
 					?>
 					<label class="label label-success">
-						<span class="glyphicon glyphicon-fire" title="Offensive Timer"></span>
-					</label>
+						<span class="glyphicon glyphicon-fire" title="Offensive Timer"></span> 
+					</label> 
 					<?php
 				}
 				else {
 					?>
 					<label class="label label-danger">
-						<span class="glyphicon glyphicon-tower" title="Defensive Timer"</span>
-					</label>
+						<span class="glyphicon glyphicon-tower" title="Defensive Timer"></span> 
+					</label> 
 					<?php	
 				}
 				?>
