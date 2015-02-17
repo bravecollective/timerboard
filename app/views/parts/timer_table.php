@@ -9,6 +9,7 @@ use Carbon\Carbon;
 		<th>Structure</th>
 		<th>Type</th>
 		<th>Timer</th>
+		<th>Relative Time</th>
 		<th>EVE Time</th>
 		<th>Win/Loss</th>
 		<th>User</th>
@@ -82,10 +83,12 @@ use Carbon\Carbon;
 				<label class="label label-<?=($timer->structureStatus === '1' ? 'primary' : 'danger')?>"><?=Timers::$structureStatus[$timer->structureStatus]?></label>
 			</td>
 			<td style="<?=$style?>" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>">
-				<abbr title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>" data-livestamp="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?></span>
-			</td>
+				<abbr title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>" data-livestamp="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?></span>			</td>
 			<td style="<?=$style?>">
 				<span class="moment" data-moment="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=date('Y-m-d H:i:s e', strtotime($timer->timeExiting))?></span>
+			</td>
+			<td style="<?=$style?>">
+				<?=date('Y-m-d H:i:s e', strtotime($timer->timeExiting))?>
 			</td>
 			<td style="<?=$style?>">
 				<?php
