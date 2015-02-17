@@ -62,6 +62,7 @@ use Carbon\Carbon;
 					</label>
 					<?php	
 				}
+				?>
 				<a href="http://evemaps.dotlan.net/system/<?=$system?>"><?=$name->itemName?></a>
 			</td>
 			<td style="<?=$style?>">
