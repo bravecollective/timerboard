@@ -40,8 +40,7 @@
 
 		setInterval(function()
 		{
-			var utcDate = new Date().toUTCString();
-			$('.time-now').html(utcDate);
+			$('.time-now').html(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 		}, 1000);
 	});
 </script>
