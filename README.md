@@ -18,7 +18,7 @@ This timerboard is designed to integrate directly with the eve static data dump 
 * Create 2 MySQL Databases, one for the timer board and one for the Eve Static Data Dump.
 * Make a MySQL user that has global privileges on both databases and put the connection info in the app/config/database.php file.
 * Import the MySQL static data dump from (https://www.fuzzwork.co.uk/dump/) into one of the databases.
-* &nbsp; &nbsp; &nbsp; &nbsp; The Eve Static Data database must be the connection that's named eve_data. The current latest version is Rubicon 1.1 (1.1.94321) (https://www.fuzzwork.co.uk/dump/mysql-latest.tar.bz2)
+* &nbsp; &nbsp; &nbsp; &nbsp; The Eve Static Data database must be the connection that's named eve_data. (https://www.fuzzwork.co.uk/dump/mysql-latest.tar.bz2)
 * In a MySQL Database Manager, add standard indexes to all the fields in the 'mapdenormalize' table (see example SQL file: add_indexes.sql).
 * Configure the app/config/database.php file with your database connection details.
 * Edit app/database/seeds/UserTableSeeder.php and setup your default username, email address and password
