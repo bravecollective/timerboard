@@ -28,7 +28,7 @@ This timerboard is designed to integrate directly with the eve static data dump 
 
 ### Upgrading
 
-* Run "./update" from the repo root to pull the latest version, all the latest packages, and migrate the DB (_This will destroy your previous data by default, be very carefull_).
+* Run "./update" from the repo root to pull the latest version, all the latest packages, and migrate the DB with any changes.
 
 ### Contributing To TimerBoard
 
