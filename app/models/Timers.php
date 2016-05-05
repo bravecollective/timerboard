@@ -2,10 +2,9 @@
 
 /**
  * Class Timers
- *
  * Timer data model for recording individual timers for EVE online
  */
-class Timers extends Eloquent{
+class Timers extends Eloquent {
 
 	/**
 	 * The database table used by the model.
@@ -33,7 +32,7 @@ class Timers extends Eloquent{
 	 *
 	 * @var array
 	 */
-	protected $fillable = array(
+	protected $fillable = [
 		'itemID',
 		'structureType',
 		'structureStatus',
@@ -41,90 +40,99 @@ class Timers extends Eloquent{
 		'outcome',
 		'timerType',
 		'timeExiting',
+		'priority',
 		'user_id'
-	);
+	];
 
 	/**
 	 * Hardcoded Structure IDs that map IDs to names
 	 *
 	 * @var array
 	 */
-	public static $structureTypes = array(
-                '6' => 'POS [S]',
-                '7' => 'POS [M]',
-                '1' => 'POS [L]',
+	public static $structureTypes = [
+		'6' => 'POS [S]',
+		'7' => 'POS [M]',
+		'1' => 'POS [L]',
 		'2' => 'POCO',
 		'3' => 'Station',
 		'4' => 'I-Hub',
-		'5' => 'TCU'
-	);
+		'5' => 'TCU',
+	];
+
+	/**
+	 * Hardcoded Structure IDs that map IDs to names
+	 *
+	 * @var array
+	 */
+	public static $timerPriority = [
+		'1' => 'Not Important',
+		'2' => 'Somewhat Important',
+		'3' => 'Important',
+		'4' => 'Very Important',
+		'5' => 'Critical',
+		'6' => 'on Tranquility',
+		'7' => 'on Duality',
+	];
 
 	/**
 	 * Hardcoded Structure Statuses that map Statuses to names
 	 *
 	 * @var array
 	 */
-	public static $structureStatus = array(
+	public static $structureStatus = [
 		'0' => '',
 		'1' => 'Shield',
 		'2' => 'Armor',
-	);
+	];
 
 	/**
 	 * Hardcoded Timer Types that map Types to Names
 	 *
 	 * @var array
 	 */
-	public static $timerType = array(
+	public static $timerType = [
 		'0' => 'Offensive',
 		'1' => 'Defensive'
-	);
-        
-        public static $signUpRoles = array(
-                '0' => 'FC',
-                '1' => 'Titan'
-        );
-        
-        /**
+	];
+
+	public static $signUpRoles = [
+		'0' => 'FC',
+		'1' => 'Titan'
+	];
+
+	/**
 	 * Many-to-many relationship to ApiUser for signing up for timers.
 	 */
-        public function signUps()
-        {
-                return $this->belongsToMany('ApiUser', 'timer_sign_ups')->withPivot('role', 'confirmed');
-        }
-        
-        /**
+	public function signUps() {
+		return $this->belongsToMany('ApiUser', 'timer_sign_ups')->withPivot('role', 'confirmed');
+	}
+
+	/**
 	 * One-to-many relationship to notes
 	 */
-        public function notes()
-        {
-                return $this->hasMany('Notes');
-        }
-        
-        /**
+	public function notes() {
+		return $this->hasMany('Notes');
+	}
+
+	/**
 	 * Convenience method for checking if a user has signed up for this timer instance.
-         * 
-         * @param int UserId ID of user to check
-         * @param role ID of role from 
-         * @return bool True if signed up, otherwise false
+	 *
+	 * @param int UserId ID of user to check
+	 * @param role ID of role from
+	 * @return bool True if signed up, otherwise false
 	 */
-        public function isUserSignedUpAs($userId, $roleId)
-        {
-                return !$this->signUps()->wherePivot('api_user_id', $userId)
-                        ->wherePivot('role', $roleId)->get()->isEmpty();
-        }
-        
-        public function userCanSignUp($roleId)
-        {       
-                $role = Timers::$signUpRoles[$roleId];
-                if($role == 'FC' and Auth::user()->isFC())
-                {
-                        return true;
-                }
-                if($role == 'Titan' and Auth::user()->isTitanPilot())
-                {
-                        return true;
-                }
-                return false;
-        }
+	public function isUserSignedUpAs($userId, $roleId) {
+		return !$this->signUps()->wherePivot('api_user_id', $userId)->wherePivot('role', $roleId)->get()->isEmpty();
+	}
+
+	public function userCanSignUp($roleId) {
+		$role = Timers::$signUpRoles[$roleId];
+		if ($role == 'FC' and Auth::user()->isFC()) {
+			return true;
+		}
+		if ($role == 'Titan' and Auth::user()->isTitanPilot()) {
+			return true;
+		}
+		return false;
+	}
 }

@@ -35,6 +35,12 @@ $logFile = 'log-'.php_sapi_name().'.txt';
 
 Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
+$monolog = Log::getMonolog();
+$syslog = new \Monolog\Handler\SyslogHandler('php-'.php_sapi_name().'-cron');
+$formatter = new \Monolog\Formatter\LineFormatter('%channel%.%level_name%: %message% %extra%');
+$syslog->setFormatter($formatter);
+$monolog->pushHandler($syslog);
+
 /*
 |--------------------------------------------------------------------------
 | Application Error Handler

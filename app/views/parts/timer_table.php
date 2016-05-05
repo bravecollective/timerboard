@@ -1,13 +1,16 @@
 <?php
 use Carbon\Carbon;
+
 ?>
 
 <table class="table table-condensed table-striped table-bordered table-hover">
 	<thead>
 	<tr>
 		<th>Name</th>
+		<th>Priority</th>
 		<th>Structure</th>
 		<th>Type</th>
+		<th>Location</th>
 		<th>Timer</th>
 		<th>Relative Time</th>
 		<th>EVE Time</th>
@@ -18,9 +21,10 @@ use Carbon\Carbon;
 	</thead>
 	<tbody>
 	<?php
-	foreach($timers as $id => $timer)
-	{
+	foreach ($timers as $id => $timer) {
 		$name = MapItem::find($timer->itemID);
+		$region = MapRegion::find($name->regionID);
+		$const = MapConstellation::find($name->constellationID);
 		$user = ApiUser::find($timer->user_id);
 
 		$nowDate = Carbon::now();
@@ -31,13 +35,13 @@ use Carbon\Carbon;
 
 		$class = '';
 		$style = '';
-		if($timer->timerType === '0')
-		{
+		if ($timer->timerType === '0') {
 			$class = 'success';
 		}
-		else if($timer->timerType === '1')
-		{
-			$class = 'danger';
+		else {
+			if ($timer->timerType === '1') {
+				$class = 'danger';
+			}
 		}
 
 		// The database does not store system names. Find roman numerals and split out the basename.
@@ -46,14 +50,16 @@ use Carbon\Carbon;
 		?>
 		<tr class="<?=$class?>" style="<?=$style?>" id="item<?=$id?>" hours="<?=$hours?>">
 			<td style="<?=$style?>">
-				<label title="<?=$name->itemID?>" class="label <?= ($name->groupID == Timers::$POCOGroupID ? 'label-primary' : 'label-default') ?>" style="padding: .2em .7em .3em;"><?= ($name->groupID == Timers::$POCOGroupID ? 'P' : 'M') ?></label>
+				<label title="<?=$name->itemID?>" class="label <?=($name->groupID == Timers::$POCOGroupID ? 'label-primary' : 'label-default')?>" style="padding: .2em .7em .3em;"><?=($name->groupID == Timers::$POCOGroupID ? 'P' : 'M')?></label>
 				<a href="http://evemaps.dotlan.net/system/<?=$system?>"><?=$name->itemName?></a>
+			</td>
+			<td style="<?=$style?>">
+				<?=Timers::$timerPriority[$timer->priority]?>
 			</td>
 			<td style="<?=$style?>">
 				<?php
 				$label_class = 'default';
-				switch($timer->structureType)
-				{
+				switch ($timer->structureType) {
 					case '3':
 					case '4':
 						$label_class = 'info';
@@ -71,44 +77,49 @@ use Carbon\Carbon;
 				// Display timer type as an icon to help with red/green colorblind users
 				if ($timer->timerType === '0') {
 					?>
-					<label class="label label-warning" title="Offensive Timer"><span class="glyphicon glyphicon-plane"></span></label> 
-					<?php
+					<label class="label label-warning" title="Offensive Timer"><span class="glyphicon glyphicon-plane"></span></label>
+				<?php
 				}
 				else {
 					?>
-					<label class="label label-warning" title="Defensive Timer"><span class="glyphicon glyphicon-tower"></span></label> 
-					<?php	
+					<label class="label label-warning" title="Defensive Timer"><span class="glyphicon glyphicon-tower"></span></label>
+				<?php
 				}
 				?>
 				<label class="label label-<?=($timer->structureStatus === '1' ? 'primary' : 'danger')?>"><?=Timers::$structureStatus[$timer->structureStatus]?></label>
 			</td>
-			<td style="<?=$style?>" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>">
-				<abbr title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>" data-livestamp="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->diffForHumans();?></span>			</td>
 			<td style="<?=$style?>">
-				<span class="moment" data-moment="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>"><?=date('Y-m-d H:i:s e', strtotime($timer->timeExiting))?></span>
+				<?=$region->regionName?>
+			</td>
+			<td style="<?=$style?>" title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))->toISO8601String()?>">
+				<abbr title="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))
+					->toISO8601String()?>" data-livestamp="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))
+					->toISO8601String()?>"><?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))
+						->diffForHumans();?></span>
+			</td>
+			<td style="<?=$style?>">
+				<span class="moment" data-moment="<?=Carbon::createFromTimeStamp(strtotime($timer->timeExiting))
+					->toISO8601String()?>"><?=date('Y-m-d H:i:s e', strtotime($timer->timeExiting))?></span>
 			</td>
 			<td style="<?=$style?>">
 				<?=date('Y-m-d H:i:s e', strtotime($timer->timeExiting))?>
 			</td>
 			<td style="<?=$style?>">
 				<?php
-				if($timer->bashed === '0')
-				{
+				if ($timer->bashed === '0') {
 					?><label class="label label-info">NO DATA</label><?php
 				}
-				else
-				{
-					if($timer->outcome === '1')
-					{
+				else {
+					if ($timer->outcome === '1') {
 						?><label class="label label-success">WIN</label><?php
 					}
-					else if($timer->outcome === '2')
-					{
-						?><label class="label label-danger">LOSS</label><?php
-					}
-					else
-					{
-						?><label class="label label-info">Outcome Needed</label><?php
+					else {
+						if ($timer->outcome === '2') {
+							?><label class="label label-danger">LOSS</label><?php
+						}
+						else {
+							?><label class="label label-info">Outcome Needed</label><?php
+						}
 					}
 				}
 				?>
@@ -117,29 +128,27 @@ use Carbon\Carbon;
 			<td style="<?=$style?>">
 				<?=$user->character_name?> (<?=$user->alliance_name?>)
 			</td>
-			-->
+-->
 			<td style="<?=$style?>" class="text-right">
 				<?php
-                                if(Auth::user()->canViewDetails())
-                                {
-                                        ?>
-                                        <a href="<?=URL::route('details', array($timer->id))?>" class="btn btn-info btn-xs">Details</a>
-                                <?php
-                                }
-				if(Auth::user()->permission === '1')
-				{
-					if($minutes > -15 and $timer->outcome === '0')
-					{
-                                                ?>
+				if (Auth::user()->canViewDetails()) {
+					?>
+					<a href="<?=URL::route('details', array($timer->id))?>" class="btn btn-info btn-xs">Details</a><br />
+				<?php
+				}
+				if (Auth::user()->permission === '1') {
+					if ($minutes > -15 and $timer->outcome === '0') {
+						?>
 						<a href="<?=URL::route('delete_timer', array($timer->id))?>" class="btn btn-danger btn-xs deleteButton">Delete</a>
 					<?php
 					}
-					else if($minutes <= -15 and $timer->outcome === '0')
-					{
-						?>
-						<a href="<?=URL::route('win_timer', array($timer->id))?>" class="btn btn-primary btn-xs">Win</a>
-						<a href="<?=URL::route('fail_timer', array($timer->id))?>" class="btn btn-warning btn-xs">Loss</a>
-					<?php
+					else {
+						if ($minutes <= -15 and $timer->outcome === '0') {
+							?>
+							<a href="<?=URL::route('win_timer', array($timer->id))?>" class="btn btn-primary btn-xs">Win</a><br />
+							<a href="<?=URL::route('fail_timer', array($timer->id))?>" class="btn btn-warning btn-xs">Loss</a>
+						<?php
+						}
 					}
 				}
 				?>
@@ -151,8 +160,7 @@ use Carbon\Carbon;
 	</tbody>
 </table>
 <?php
-if(isset($paginate) and $paginate == true)
-{
+if (isset($paginate) and $paginate == true) {
 	echo $timers->links();
 }
 ?>

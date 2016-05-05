@@ -29,7 +29,7 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
-	'production' => array('cron.bravecollective.net'),
+	'production' => array('cron.braveineve.com'),
 ));
 
 /*

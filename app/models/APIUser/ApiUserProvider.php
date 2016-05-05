@@ -13,8 +13,7 @@ class ApiUserProvider implements UserProviderInterface {
 
 	public function retrieveByCredentials(array $credentials)
 	{
-		try
-		{
+
 			$user = ApiUser::where('token', '=', $credentials['token'])->get();
 
 			if(isset($user[0]))
@@ -37,18 +36,6 @@ class ApiUserProvider implements UserProviderInterface {
 				$user = $this->updateUser($credentials['token'], $result);
 				return $user;
 			}
-		}
-		catch(Exception $e)
-		{
-			echo "\n\n";
-			echo $e->getMessage();
-			echo "\n\n";
-			echo "Credentials:\n";
-			var_dump($credentials);
-			echo "\n\n";
-			exit;
-			return null;
-		}
 	}
 
 	public function validateCredentials(UserInterface $user, array $credentials)
@@ -113,8 +100,19 @@ class ApiUserProvider implements UserProviderInterface {
 		}
                 
         // Get alliance info
+
+		$alliance_id = '';
+		$alliance_name = '';
+		$alliance_short = '';
+
         $api = new Brave\API(Config::get('braveapi.application-endpoint'), Config::get('braveapi.application-identifier'), Config::get('braveapi.local-private-key'), Config::get('braveapi.remote-public-key'));
-        $alliance_result = $api->lookup->alliance(array('search' => $result->alliance->id, 'only' => 'short'));
+
+		if (@$result->alliance->id) {
+			$alliance_result = $api->lookup->alliance(array('search' => $result->alliance->id, 'only' => 'short'));
+			$alliance_id = $result->alliance->id;
+			$alliance_name = $result->alliance->name;
+			$alliance_short = $alliance_result->short;
+		}
 
 		/*
 		if($result->character->id == 93647416)
@@ -133,9 +131,9 @@ class ApiUserProvider implements UserProviderInterface {
 				'token' => $token,
 				'remember_token' => '',
 				'character_name' => $result->character->name,
-				'alliance_id' => $result->alliance->id,
-				'alliance_name' => $result->alliance->name,
-				'alliance_ticker' => $alliance_result->short,
+				'alliance_id' => $alliance_id,
+				'alliance_name' => $alliance_name,
+				'alliance_ticker' => $alliance_short,
 				'tags' => json_encode($result->tags),
 				'status' => 1,
 				'permission' => $permission
@@ -149,9 +147,9 @@ class ApiUserProvider implements UserProviderInterface {
 			$userfound->permission = $permission;
 			$userfound->token = $token;
 			$userfound->character_name = $result->character->name;
-			$userfound->alliance_id = $result->alliance->id;
-			$userfound->alliance_name = $result->alliance->name;
-        		$userfound->alliance_ticker = $alliance_result->short;
+			$userfound->alliance_id = $alliance_id;
+			$userfound->alliance_name = $alliance_name;
+        		$userfound->alliance_ticker = $alliance_short;
 			$userfound->permission = $permission;
 			$userfound->tags = json_encode($result->tags);
 

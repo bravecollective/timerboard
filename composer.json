@@ -4,13 +4,14 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.2.*",
-		"bravecollective/php-api": "dev-master"
+		"laravel/framework": "^4.2.17",
+		"bravecollective/php-api": "1.0.3"
 	},
 	"autoload": {
 		"classmap": [
 			"app/commands",
 			"app/controllers",
+			"app/classes",
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",

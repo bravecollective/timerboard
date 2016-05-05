@@ -52,6 +52,11 @@ if (Session::has('flash_error'))
 			</div>
 
 			<div class="form-group">
+				<?=Form::label('timerPriority', 'Timer Priority')?>
+				<?=Form::select('timerPriority', Timers::$timerPriority, '', array('id' => 'timerPriority', 'class' => 'form-control'))?>
+			</div>
+
+			<div class="form-group">
 				<?=Form::label('structureType', 'Structure Type')?>
 				<?=Form::select('structureType', Timers::$structureTypes, '', array('id' => 'structureType', 'class' => 'form-control'))?>
 			</div>

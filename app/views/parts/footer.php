@@ -2,7 +2,7 @@
 	<div class="container">
 		<p class="text-muted credit">
 			<!--<span class="pull-right">Help</span>-->
-			© HERO - 2013
+			© BRAVE - 2013
 		</p>
 	</div>
 </div>

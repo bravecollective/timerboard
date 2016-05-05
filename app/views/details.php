@@ -22,7 +22,11 @@ if (Session::has('flash_msg'))
 	</h2>
 </div>
 <?php
-        $name = MapItem::find($timer->itemID);
+        try {
+			$name = MapItem::find($timer->itemID);
+		} catch (Exception $e) {
+				App::abort(404);
+		}
         $user = ApiUser::find($timer->user_id);
         
         $sys_tmp = preg_split("/\ [IVX]+/", $name->itemName);
@@ -67,7 +71,13 @@ else
                 ?><label class="label label-info">Outcome Needed</label><?php
         }
 }
+
+$user = ApiUser::find($timer->user_id);
+
 ?>
+<h4>Reported By: <?=$user->character_name?> (<?=$user->alliance_name?>)</h4>
+
+
 <?php
 foreach(Timers::$signUpRoles as $roleId => $roleName)
 {

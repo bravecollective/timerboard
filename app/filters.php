@@ -15,7 +15,7 @@ App::before(function($request)
 {
 	date_default_timezone_set('UTC');
 
-	if (Session::get('LAST_ACTIVITY') && (time() - Session::get('LAST_ACTIVITY')) > 1000)
+	if (Session::get('LAST_ACTIVITY') && (time() - Session::get('LAST_ACTIVITY')) > 3600)
 	{
 		// Delete session data created by this app:
 		Auth::logout();

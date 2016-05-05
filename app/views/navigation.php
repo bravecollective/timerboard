@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<?=URL::route('home')?>">HERO Coalition Timers</a>
+			<a class="navbar-brand" href="<?=URL::route('home')?>">Brave Collective Timers</a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
