@@ -32,7 +32,7 @@ if (Session::has('flash_error'))
 
 				<div class="input-group" style="margin-bottom: 10px;">
 					<span class="input-group-addon">Days:</span>
-					<?=Form::selectRange('days', 0, 2, null, array('class' => 'form-control'))?>
+					<?=Form::selectRange('days', 0, 6, null, array('class' => 'form-control'))?>
 				</div>
 
 				<div class="input-group" style="margin-bottom: 10px;">
